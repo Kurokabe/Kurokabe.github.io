@@ -326,9 +326,11 @@ section {
   left: 0;
 }
 
-.section-title p {
-  margin-bottom: 0;
-}
+
+/* .section-title p {
+  margin: 5px 0;
+  text-align: justify
+} */
 
 /*--------------------------------------------------------------
 # About
@@ -534,6 +536,11 @@ section {
   top: 0;
   background: #fff;
   border: 2px solid #1f5297;
+}
+
+.resume .resume-item p {
+  margin: 5px 0;
+  text-align: justify
 }
 
 /*--------------------------------------------------------------
@@ -916,6 +923,11 @@ section {
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #149ddd;
 }
+
+/*--------------------------------------------------------------
+# Certificates
+--------------------------------------------------------------*/
+
 
 /*--------------------------------------------------------------
 # Contact
