@@ -82,7 +82,7 @@ h6 {
   overflow-y: auto;
 }
 
-#header .profile img {
+#header .profile .profile-img {
   margin: 15px auto;
   display: block;
   width: 120px;
@@ -138,6 +138,10 @@ h6 {
   #main {
     margin-left: 0;
   }
+}
+
+.huggingface {
+  width: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -552,9 +556,9 @@ section {
   padding-right: 5px;
 }
 
-.col-lg-4.col-md-6.portfolio-item.shifted {
+/* .col-lg-4.col-md-6.portfolio-item.shifted {
   margin-top: 150px;
-}
+} */
 
 
 .portfolio #portfolio-flters {
@@ -774,7 +778,16 @@ section {
 }
 
 .portfolio-details .portfolio-description p {
-  padding: 0;
+  text-align: justify;
+}
+
+.portfolio-details .portfolio-description b {
+  background: #e4edf9;
+  font-weight: 600;
+  padding: 3px;
+  /* padding: 5px 15px;
+  display: inline-block;
+  margin-bottom: 10px; */
 }
 
 /*--------------------------------------------------------------
@@ -927,7 +940,9 @@ section {
 /*--------------------------------------------------------------
 # Certificates
 --------------------------------------------------------------*/
-
+.certificates-item {
+  max-width: 300px;
+}
 
 /*--------------------------------------------------------------
 # Contact
