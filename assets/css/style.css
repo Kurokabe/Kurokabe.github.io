@@ -128,6 +128,8 @@ h6 {
 
 #main {
   margin-left: 300px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 @media (max-width: 1199px) {
@@ -137,8 +139,19 @@ h6 {
 
   #main {
     margin-left: 0;
+    padding-left: -50px;
+    padding-right: -50px;
   }
 }
+
+/* @media (max-width: 400px) {
+
+  #hero {
+    background: url("../img/hero-bg.jpg") bottom right;
+    background-size: auto;
+  }
+} */
+
 
 .huggingface {
   width: 20px;
@@ -233,7 +246,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/hero-bg.jpg") bottom right;
   background-size: cover;
 }
 
@@ -435,7 +448,7 @@ section {
 
 .skills .progress .skill {
   padding: 0;
-  margin: 0 0 6px 0;
+  margin: 5 5 6px 0;
   text-transform: uppercase;
   display: block;
   font-weight: 600;
