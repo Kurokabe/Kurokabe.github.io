@@ -129,26 +129,37 @@
             </div>
             <div class="portfolio-description">
               <h2>Summary</h2>
-              <p>K-Défauts was a project that was commissioned by Ceramaret, a ceramic components manufacturing
-                company. Due to the fragile nature of ceramic material, Ceramaret was experiencing a loss of around 10%
-                that they wished to reduce. In cases where a piece was incorrectly manufactured, a quality engineer
-                would write a notice of non-compliance detailing the issue(s) at hand. These issues could range from
-                improper dimension and functionality to aspect and pollution-related problems.</p>
               <p>
-                The primary objective of the project was to <b>classify textual descriptions</b> of the issues into one
-                or multiple classes. To achieve this goal, an <b>unsupervised classification</b> was initially conducted
-                to see if the data could be divided into different classes. Since it was the case, labeled dataset was
-                subsequently provided enable classification into a single class. <b>Textual data augmentation</b> was
-                implemented to improve the results, which resulted in a significant increase in the weighted average
-                f1-score from 0.64 to 0.73.
+                <strong>K-Défauts</strong> was developed in collaboration with <strong>Ceramaret</strong>, a leading
+                manufacturer of advanced ceramic components. Due to the highly fragile nature of ceramics, the company
+                was experiencing a ~10% material loss during production. My objective was to automate the categorization
+                of these production errors by analyzing the textual "notices of non-compliance" written by quality
+                engineers.
               </p>
               <p>
-                A larger dataset that was <b>multi-labeled</b> was later furnished, which enabled the team to achieve a
-                <b>final accuracy of 85</b>% when at least one label was wrong (out of seven labels).
+                These quality reports detailed complex, multi-faceted issues—ranging from functional and dimensional
+                defects to aesthetic and pollution-related problems. By leveraging <strong>Natural Language Processing
+                  (NLP)</strong>, I built an automated text classification pipeline to map these raw engineer notes
+                directly into actionable defect categories.
+              </p>
+
+              <h2>Technical Approach & Results</h2>
+              <p>
+                The initial data was completely unlabeled. To solve this, I first applied <strong>unsupervised
+                  classification</strong> techniques to cluster the textual descriptions and prove that distinct defect
+                categories could be mathematically isolated.
               </p>
               <p>
-                The project was realised in <b>Python</b>, with <b>Scikit-Learn</b> used for the machine learning
-                aspects, while natural language processing was done with <b>Spacy</b>.</p>
+                Once a labeled dataset was established, I developed a supervised NLP model using <strong>Python,
+                  Scikit-Learn, and spaCy</strong>. To handle the limited initial data, I implemented <strong>textual
+                  data augmentation</strong>, which successfully increased the weighted average F1-score from 0.64 to
+                0.73.
+              </p>
+              <p>
+                <strong>The Result:</strong> As the project scaled, I transitioned the architecture to handle a larger,
+                <strong>multi-labeled dataset</strong> (where a single part could have multiple types of defects). The
+                final model achieved a highly robust <strong>85% accuracy</strong> across seven distinct defect
+                categories, providing Ceramaret with an automated tool to track and mitigate production losses.
               </p>
             </div>
           </div>

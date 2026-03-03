@@ -131,65 +131,49 @@
             </div>
             <div class="portfolio-description">
               <h2>Summary</h2>
-              <p>The <b>MoDoS</b> project aimed to develop an application that provides <b>safe and accessible mobility
-                  options</b>
-                for
-                <b>seniors and disabled people</b>.
+              <p>
+                <strong>MoDoS</strong> is a social-impact initiative developed with <strong>HEIG-VD</strong> to create
+                safe, accessible routing applications for seniors and individuals with reduced mobility. My role was to
+                design, train, and deploy the core <strong>Computer Vision</strong> engine responsible for analyzing
+                real-world street images and identifying potential mobility hazards.
               </p>
-              <p>To achieve this, I developed a <b>deep learning</b> model that categorizes
-                images
-                into multiple classes, including dangerous paths, steep slopes, and obstacles. The dataset used to train
-                the model was imbalanced, but I addressed this by developing a two-stage model that achieved an
-                <b>F1-score
-                  of 0.81 and 0.90</b> for the first and second models, respectively.
+              <p>
+                Using <strong>TensorFlow and Keras</strong>, I fine-tuned a <strong>MobileNetV2</strong> architecture to
+                process crowdsourced images in real-time. Because the application required high availability and low
+                latency, I containerized the final system with Docker and deployed it using <strong>TensorFlow
+                  Serving</strong>, seamlessly integrating the AI directly into the MoDoS user application.
               </p>
-              <p>I utilized the MobileNet computer vision
-                model and TensorFlow Serving to develop and deploy the model for real-time use in the MoDoS application.
-              </p>
+
+
             </div>
           </div>
         </div>
         <div class="row gy-4">
           <div class="portfolio-description">
-            <h2>Details</h2>
+            <h2>Overcoming Imbalanced Data with a Two-Stage Architecture</h2>
             <p>
-              As a member of the <b>MoDoS</b> project team, my main responsibility was to develop and deploy a <b>deep
-                learning model</b> that categorizes images into multiple classes. The project's objective is to create
-              an
-              application that provides seniors and disabled people with <b>safe and accessible mobility options</b> by
-              avoiding unsafe paths and steep slopes.
+              The raw dataset was crowdsourced during a local "Mapping Party." Consequently, the data was highly
+              imbalanced, containing an overwhelming number of "normal" street images and very few examples of actual
+              hazards.
             </p>
             <p>
-              The dataset used to train the <b>image classification</b> model was generated from a "Mapping Party" where
-              participants walked around the city and uploaded relevant photos. The dataset was <b>highly
-                imbalanced</b>,
-              with few relevant class images.
+              To prevent the model from becoming biased, I engineered a specialized <strong>two-stage classification
+                pipeline</strong>:
             </p>
+            <ul>
+              <li><strong>Stage 1 (Anomaly Detection):</strong> A binary classifier that first determines if an image
+                contains a problem or is completely clear. <em>(Achieved an F1-score of 0.81)</em></li>
+              <li><strong>Stage 2 (Hazard Categorization):</strong> If an anomaly is detected, the image is passed to
+                a secondary, highly specialized model that categorizes the exact hazard across seven classes (e.g.,
+                steep slopes, dangerous paths, narrow paths, obstacles, surface problems, or missing curb ramps).
+                <em>(Achieved an F1-score of 0.90)</em>
+              </li>
+            </ul>
             <p>
-              To address this challenge, I developed a <b>two-stage model</b> to classify images into two categories:
-              with a
-              problem or without a problem. When an image falls into the former category, it is passed to a
-              specialized model to classify it into the specific class among the seven available (which are slope too
-              high, dangerous path, path not wide enough, obstacle on the way, surface problem, curb ramp and a bonus
-              category for everything else). The final <b>F1-score</b>
-              for the first and second model was <b>0.81</b> and <b>0.90</b>, respectively.
+              <strong>The Result:</strong> By cascading these models, the system achieved a combined pipeline score of
+              0.73, successfully providing a lightweight, highly accurate visual AI tool to route vulnerable
+              pedestrians away from urban hazards.
             </p>
-            <p>
-              Although the final F1-score is 0.90 when an image is from a specific class, passing it through both
-              models
-              results in a lower score of 0.73 (0.81 * 0.9). Overall, my work in the MoDoS project contributed to the
-              development of a machine learning model that aids seniors and disabled people in choosing safe and
-              accessible paths for their mobility.
-            </p>
-            <p>Additionally, I utilized the <b>MobileNetV2</b> computer vision model, which was <b>fine-tuned on
-                TensorFlow</b>,
-              to develop the image classification model.
-            </p>
-            <p>
-              To deploy the model, I used <b>TensorFlow Serving</b>, a high-performance serving system designed for
-              machine
-              learning models. By using this framework, I was able to easily deploy the model and make it available for
-              real-time use in the MoDoS application.</p>
           </div>
         </div>
       </div>

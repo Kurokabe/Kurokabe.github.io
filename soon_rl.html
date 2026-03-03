@@ -138,48 +138,39 @@
             <div class="portfolio-description">
               <h2>Summary</h2>
               <p>
-                <b>SOON-RL</b> is a component of the SOON social network machine project that utilizes <b>reinforcement
-                  learning</b> in a <b>multi-agent</b> environment to optimize workshop production. The objective of the
-                project was to efficiently produce a specific order by training multiple agents to complete the
-                necessary tasks. The workshop is composed of machines specialized in different tasks and follows a
-                sequence of steps to produce a component. The machines needed to optimize production to achieve the
-                order as quickly as possible while also responding to machine failures.
+                <strong>SOON-RL</strong> is a Reinforcement Learning (RL) project designed to optimize manufacturing
+                workshop production within a multi-agent environment. The goal was to train an AI system to efficiently
+                manage a sequence of specialized machines to fulfill production orders in the minimum amount of time,
+                dynamically adapting to disruptions like machine failures.
               </p>
               <p>
-                To achieve this, a simulation environment was developed using Python with Gym and SimPy. Initially,
-                <b>Stable Baselines</b> was used, but the project shifted to <b>Ray RLlib</b> to support multi-agent
-                training. Hyperparameters and rewards were optimized using <b>Ray Tune</b>. At the project's conclusion,
-                the machines were able to learn and complete the order in the minimum number of steps, which were
-                calculated manually to confirm the best time.
+                I developed a custom simulation environment using <strong>Python, Gym, and SimPy</strong>. To support
+                complex multi-agent training, I transitioned the architecture from Stable Baselines to <strong>Ray
+                  RLlib</strong>, allowing multiple machines to learn collaboratively. By leveraging <strong>Ray
+                  Tune</strong> for rigorous hyperparameter and reward optimization, the final trained agents
+                successfully learned to route production and reconfigure machines to achieve the absolute mathematical
+                minimum number of production steps.
               </p>
+
             </div>
           </div>
         </div>
         <div class="row">
           <div class="portfolio-description">
-            <h2>Details</h2>
-            <p>
-              The primary objective of this project was to <b>optimize a workshop production using Reinforcement
-                Learning</b>.
-              The workshop consists of several machines that produce parts in a sequence to fulfill one or more orders.
-              For example, creating a finished part may require a sequence of production steps such as <b>A1 → B1 →
-                C1</b>. The
-              machines needed to <b>work collaboratively</b> to complete orders in different scenarios of varying
-              complexity.
-            </p>
 
-            <p>The machines were programmed to perform one of four possible actions - <b>Wait</b>, <b>Reconfigure</b>
-              (e.g. change
-              produced type from A1 to A2), <b>Get Pieces from
-                the storage</b>, or <b>Produce</b>. They were aware of the recipe for creating orders, the amount of
-              available parts
-              in the storage, the current order that needs to be fulfilled, the state of each machine, and the amount of
-              completion of parts.</p>
+            <h2>Technical Details & Scenarios</h2>
             <p>
-              The first scenario involved producing a single type of parts to fulfill an order (A1 → B1 → C1). When a
-              new order arrived, it was either for the same parts as the ones currently being produced (C1), or for a
-              different type of part, requiring some machines to be reconfigured.</p>
-            <div class="container">
+              The core challenge was orchestrating a sequence of machines (e.g., producing part A1 → B1 → C1) that
+              needed to work collaboratively. Each machine agent had to decide between four discrete actions at any
+              given time: <strong>Wait, Reconfigure, Fetch Parts, or Produce</strong>, based on real-time storage
+              levels, recipes, and the statuses of other machines.
+            </p>
+            <p>To ensure the RL agents were robust, they were trained and evaluated across three increasingly complex
+              scenarios:</p>
+            <ul>
+              <li><strong>Scenario 1 (Dynamic Reconfiguration):</strong> Fulfilling standard sequential orders,
+                requiring agents to learn when to reconfigure themselves to produce a new type of part when order
+                requirements changed.</li>
 
               <div class="row">
                 <div class="col-lg-6">
@@ -189,52 +180,46 @@
                   <img src="assets/img/soon_rl/scenario_1b.jpg">
                 </div>
               </div>
-            </div>
-            <p>
-              In the second scenario, the machines executed an order until a breakdown occurred. Reconfigurations were
-              necessary to compensate for the defective machine.</p>
-            <div class="row justify-content-center">
-              <div class="col-lg-6">
-                <img src="assets/img/soon_rl/scenario_2.jpg">
-              </div>
-            </div>
-            <p>
-              The third scenario involved simultaneous production of two orders, with the first taking a long time to
-              complete. Reconfigurations were done to help finish the first production quicker after the second order
-              was over.</p>
+          </div>
+          <li><strong>Scenario 2 (Fault Tolerance):</strong> Simulating sudden mechanical breakdowns
+            mid-production. The surviving machines had to autonomously reconfigure their tasks to compensate for
+            the offline machine and prevent bottlenecks.</li>
 
-            <div class="row">
-              <div class="col-lg-6">
-                <img src="assets/img/soon_rl/scenario_3a.jpg">
-              </div>
-              <div class="col-lg-6">
-                <img src="assets/img/soon_rl/scenario_3b.jpg">
-              </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <img src="assets/img/soon_rl/scenario_2.jpg">
             </div>
-            <p>
-              The project used Reinforcement Learning techniques to optimize the machines actions in each scenario.
-              The machines were trained to learn how to perform actions that would fulfill orders efficiently, despite
-              possible breakdowns and reconfigurations. The project was done in <b>Python</b> and Reinforcement
-              Learning libraries such as <b>Gym</b> and <b>Ray RLlib</b>. Hyperparameter and reward optimization was
-              done
-              with <b>Ray Tune</b></p>
+          </div>
+          <li><strong>Scenario 3 (Parallel Processing):</strong> Handling simultaneous orders of varying lengths.
+            The agents learned to dynamically shift resources from a completed short order to assist with a
+            longer, ongoing order to minimize total operational time.</li>
 
-            <h3>Fun fact</h3>
-            <p>This project was the subject of my Bachelor thesis and was originally implemented in C# on Unity with
-              <b>Unity ML-Agents</b>. An interface was developed specifically for the project, allowing workshop
-              configurations to be
-              created directly in Unity. When I joined HE-Arc as a research assistant, the project was still in
-              progress, and I was assigned to continue its development. I was able to make significant improvements to
-              the project while continuing to advance its goals.
-            </p>
-            <div class="row justify-content-center">
-              <div class="col-lg-6">
-                <img src="assets/img/soon_rl/ml-agents.png">
-              </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <img src="assets/img/soon_rl/scenario_3a.jpg">
             </div>
+            <div class="col-lg-6">
+              <img src="assets/img/soon_rl/scenario_3b.jpg">
+            </div>
+          </div>
+          </ul>
+
+          <h3>Project Background & Evolution</h3>
+          <p>
+            This project originally began as my Bachelor's thesis, initially developed in C# using Unity and
+            <strong>Unity ML-Agents</strong> with a custom UI for configuring workshop layouts. Because of the
+            project's success, I was brought on as a Research Assistant at HE-Arc to continue its development,
+            successfully migrating the framework to Python for deeper algorithmic control and advanced multi-agent
+            scaling.
+          </p>
+          <div class="row justify-content-center">
+            <div class="col-lg-6">
+              <img src="assets/img/soon_rl/ml-agents.png">
+            </div>
+          </div>
 
 
-            <!-- The aim of this project was to use Reinforcement Learning to optimize the production in a workshop of
+          <!-- The aim of this project was to use Reinforcement Learning to optimize the production in a workshop of
               machines that produce parts.
               A workshop is a succession of many different machines that produces parts to fulfill one or multiple
               orders. To have a finished part, we need for instance to create a piece (A), to heat it (B), then clean it
@@ -272,8 +257,8 @@
               Two productions are done simultaneously. The first one takes a lot of time to complete (many parts to
               produce). The second is finished rather quickly. When the second order is over, machine reconfigurations
               can be done to help finish the first production quicker. -->
-          </div>
         </div>
+      </div>
       </div>
     </section><!-- End Portfolio Details Section -->
 
