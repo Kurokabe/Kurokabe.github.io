@@ -152,11 +152,49 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row gy-4">
-          <div class="portfolio-description">
-            <h2>Details</h2>
-          </div>
-        </div> -->
+                <div class="row gy-4">
+                    <div class="portfolio-description">
+                        <h2>Making Meshes Fit: Octree Tokenization</h2>
+                        <p>
+                            A transformer can only attend over a fixed context window, so the cost of representing a
+                            mesh directly limits how complex a mesh the model can generate. Working alongside a
+                            research scientist, I co-designed an <strong>octree-based tokenization scheme</strong> that
+                            cut sequence length from <strong>9 tokens per face down to 3</strong>, one per vertex.
+                        </p>
+                        <p>
+                            That is a threefold increase in the mesh complexity representable within the same context
+                            window. We then tested and validated <strong>triangle-strip encoding</strong>, which
+                            reduced the token count by a further <strong>50-60%</strong> on top of that.
+                        </p>
+
+                        <h2>From Offline Batch to Interactive: 10x Inference</h2>
+                        <p>
+                            The research prototype generated meshes far too slowly to be usable in a content creation
+                            workflow. I rebuilt the test-time pipeline around <strong>vLLM</strong> with batching and
+                            memory optimizations, bringing single-mesh generation down from
+                            <strong>5-10 minutes to 30-60 seconds</strong>, roughly a 10x improvement.
+                        </p>
+                        <p>
+                            The point was not the multiplier but the threshold it crossed: generation moved out of
+                            being an offline batch job and into a range where someone can sit and iterate on a result.
+                        </p>
+
+                        <h2>Research Process</h2>
+                        <p>
+                            The work ran on a single <strong>8&times;A100</strong> node on Azure, tracked in
+                            <strong>Weights & Biases</strong>. I was the sole engineer on the workstream, running
+                            experiments, presenting results and setting the next round of work with a supervising
+                            research scientist.
+                        </p>
+                        <p>
+                            Much of it came out of reading the mesh generation literature and implementing the ideas.
+                            Not everything survived contact: I explored <strong>NeRF</strong> and <strong>Gaussian
+                                splatting</strong> models as an
+                            alternative representation and rejected them, because marching-cubes reconstruction produced
+                            meshes far too heavy to be usable in VR.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section><!-- End Portfolio Details Section -->
 

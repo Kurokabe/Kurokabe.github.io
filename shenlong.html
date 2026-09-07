@@ -147,11 +147,33 @@
                             </p>
                             <p>
                                 The tool also supports iterative, natural language edits, allowing users to intuitively
-                                refine the space (e.g., "move the couch closer to the wall"). The final generated
-                                environments are exported in the industry-standard <strong>.usd</strong> file format,
-                                ready to be dropped seamlessly into game engines like Unity.
+                                refine the space (e.g., "move the couch closer to the wall"). Finished environments
+                                export ready to drop straight into Unity or Blender.
                             </p>
                         </div>
+                    </div>
+                </div>
+                <div class="row gy-4">
+                    <div class="portfolio-description">
+                        <h2>My Contribution: the Retrieval Layer</h2>
+                        <p>
+                            Asking an LLM which objects belong in a living room is the easy half. The harder half is
+                            finding the right assets in a corpus of hundreds of thousands of meshes, where the only
+                            searchable signals are the geometry itself and machine-generated captions.
+                        </p>
+                        <p>
+                            I built that retrieval layer. Mesh renders were embedded with <strong>CLIP</strong> and
+                            their generated captions with <strong>BERT</strong>, then served as hybrid retrieval over
+                            both signals through <strong>PyVespa</strong>. Combining the visual and textual embeddings
+                            matters: captions capture what an object <em>is</em>, renders capture what it
+                            <em>looks like</em>, and a query usually cares about both.
+                        </p>
+                        <p>
+                            The <strong>Geometric Algebra</strong> used for spatial placement was the work of a
+                            research scientist on the team, not mine. My part there was cleaning up that code and
+                            extending the scene export so generated environments could be used directly in Unity and
+                            Blender.
+                        </p>
                     </div>
                 </div>
                 <!-- <div class="row gy-4">

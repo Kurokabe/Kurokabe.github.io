@@ -47,6 +47,65 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Custom overrides (kept here rather than in the template CSS so they survive template updates) -->
+  <style>
+    .skill-card {
+      height: 100%;
+      padding: 1.5rem 1.25rem 1.75rem;
+      background: #fff;
+      border: 1px solid #eaeff5;
+      border-radius: 10px;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 6px 20px rgba(23, 59, 108, .08);
+      transform: translateY(-2px);
+    }
+
+    .skill-card img {
+      height: 56px;
+      width: auto;
+      margin-bottom: 1rem;
+      opacity: .85;
+    }
+
+    .skill-card h3 {
+      font-size: 19px;
+      font-weight: 600;
+      color: #173b6c;
+      margin: 0 0 1.1rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tech-tags li {
+      font-size: 12.5px;
+      line-height: 1;
+      padding: .42rem .62rem;
+      border-radius: 999px;
+      background: #f5f8fd;
+      border: 1px solid #e4e9f0;
+      color: #45505b;
+      white-space: nowrap;
+    }
+
+    .tech-tags li.key {
+      background: #eaf4fb;
+      border-color: #c5e2f4;
+      color: #173b6c;
+      font-weight: 600;
+    }
+  </style>
   <script>
 
     function age(birthdate) {
@@ -110,7 +169,7 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
       <h1>Alain Gysi</h1>
-      <p><span class="typed" data-typed-items="Machine Learning Engineer, Software Engineer, Data Scientist"></span></p>
+      <p><span class="typed" data-typed-items="Machine Learning Engineer, Software Engineer"></span></p>
     </div>
   </section><!-- End Hero -->
 
@@ -122,17 +181,29 @@
 
         <div class="section-title">
           <h2>About</h2>
-          <p class="lh-lg introduction-paragraph">Hello, and welcome to my portfolio! I am a <b>Data & AI Engineer</b>
-            with a foundation in Software Engineering and a Master's specialization in Data Science.
-            My expertise lies at the intersection of complex algorithm design and scalable system architecture.
-            Having completed my Master’s thesis at
-            <b>Osaka Metropolitan University (Japan)</b> and graduated with the<b>Best GPA</b> in my Bachelor's, I bring
-            a disciplined, high-performance approach to every project. Whether it's architecting LLM-driven assistants,
-            optimizing industrial workflows through Reinforcement Learning, or developing generative 3D AI, I focus on
-            turning academic excellence into real-world impact. I specialize in bridging the gap between academic
-            research and production-grade AI. Explore my key projects below, or download my full CV for a detailed
-            technical breakdown of my experience. <br /><a href="assets/resume.pdf"><i
-                class="fa-solid fa-file-lines"></i> Download my resume</a>.
+          <p class="lh-lg introduction-paragraph">Hello, and welcome to my portfolio. I'm a <b>Machine Learning
+              Engineer</b> specializing in generative models for visual data (images, video and 3D meshes) and in the
+            infrastructure that trains and serves them.
+          </p>
+          <p class="lh-lg introduction-paragraph">
+            I'm currently at <b>Unit8</b>, working across AI and data engineering. I built the fine-tuning capability
+            in <b>Darts</b>, the 9.5k-star open-source forecasting library, and gave a large Swiss reinsurer its first
+            consolidated view of how data moves through its <b>Palantir Foundry</b> platform.
+          </p>
+          <p class="lh-lg introduction-paragraph">
+            The generative work runs deeper. At <b>ORamaVR</b> I built a text- and image-to-3D mesh generation stack
+            end to end: preparing the mesh corpora, co-designing the tokenization, training and evaluating the model,
+            then optimizing inference until a single mesh took under a minute instead of five to ten.
+          </p>
+          <p class="lh-lg introduction-paragraph">
+            Before that, three years as a research assistant delivering applied ML for industry and public-sector
+            clients, including anomaly detection for the <b>European Space Agency</b> and a multi-agent reinforcement
+            learning system published at <b>IEEE PIMRC</b>.
+          </p>
+          <p class="lh-lg introduction-paragraph">
+            I hold a B.Sc. in Software Engineering and an M.Sc. in Data Science, with my thesis carried out at
+            <b>Osaka Metropolitan University</b> in Japan. Have a look at the projects below, or use the Resume
+            section for a structured overview of my experience.
           </p>
           <!-- <p>As a skilled Machine Learning Engineer, I have a proven track record of executing successful machine
             learning projects from start to finish. With expertise in Python and deep learning frameworks such as
@@ -148,9 +219,7 @@
             <img src="assets/img/profile-img.jpg" class="img-fluid rounded-circle" alt="">
           </div>
           <div class="col-md-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>ML Engineer &amp; Software Engineer</h3>
-            <p class="fst-italic">
-            </p>
+            <h3>Machine Learning Engineer &amp; Software Engineer</h3>
             <div class="row">
               <div class="col-md-6">
                 <ul>
@@ -258,55 +327,133 @@
 
         <div class="section-title">
           <h2>Skills</h2>
-          <p class="lh-lg introduction-paragraph">I combine rigorous software engineering principles with advanced
-            machine learning research to build scalable, data-driven solutions. My expertise spans the entire lifecycle
-            of an AI product—from exploratory data analysis and architectural design to cloud deployment and continuous
-            optimization.
+          <p class="lh-lg introduction-paragraph">I work end to end on machine learning systems: preparing and
+            structuring raw data, designing and training models, and optimizing inference for production. A software
+            engineering background shapes how I build the pipelines and services around them.
           </p>
         </div>
 
         <div class="row skills-content">
 
           <div class="container-fluid">
-            <div class="row my-5 justify-content-center">
-              <div class="col-md-4 text-center">
-                <img src="assets/img/icons/machine-learning.png" class="mb-4">
-                <h1 class="mb-3"> Machine Learning</h1>
-                <p class="text-muted"> Scikit-Learn, Pandas, Polars, NumPy, SQL • <br>Advanced Data Visualization
-                  (Matplotlib,
-                  Seaborn) • <br>Hyperparameter Optimization (Ray Tune, Optuna) • <br>NLP & Computer Vision</p>
-              </div>
-              <div class="col-md-4 text-center">
-                <img src="assets/img/icons/deep-learning.png" class="mb-4">
-                <h1 class="mb-3"> Deep Learning</h1>
-                <p class="text-muted">PyTorch, PyTorch-Lightning, TensorFlow, Keras • <br>Generative AI & Transformers
-                  (HuggingFace, Nvidia NeMo)
-                </p>
-              </div>
-              <div class="col-md-4 text-center">
-                <img src="assets/img/icons/robot.png" class="mb-4">
-                <h1 class="mb-3">Reinforcement Learning</h1>
-                <p class="text-muted"> Ray RLlib, Stable Baselines3 • <br>Multi-agent System Design • <br>Unity
-                  ML-Agents
-                </p>
-              </div>
-            </div>
-            <div class="row my-5 justify-content-center">
-              <div class="col-md-6 text-center">
-                <!-- <i class="fas fa-solid fa-5x fa-code mb-4"></i> -->
-                <img src="assets/img/icons/computer.png" class="mb-4">
-                <h1 class="mb-3"> Software Engineering</h1>
-                <p class="text-muted"> Docker, Kubernetes, AWS, Linux • <br>CI/CD Pipelines & Git • <br>Design Patterns
-                  & Clean Code • <br>Project Management & Rapid Prototyping</p>
+            <div class="row g-4 my-3">
+
+              <div class="col-md-4" data-aos="fade-up">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/machine-learning.png" alt="">
+                  <h3>Machine Learning</h3>
+                  <ul class="tech-tags">
+                    <li class="key">scikit-learn</li>
+                    <li class="key">Pandas</li>
+                    <li class="key">NumPy</li>
+                    <li>Polars</li>
+                    <li>SQL</li>
+                    <li>spaCy</li>
+                    <li>Optuna</li>
+                    <li>Ray Tune</li>
+                    <li>SHAP</li>
+                    <li>LIME</li>
+                    <li>Matplotlib</li>
+                    <li>Seaborn</li>
+                  </ul>
+                </div>
               </div>
 
-              <div class="col-md-6 text-center">
-                <img src="assets/img/icons/coding.png" class="mb-4">
-                <h1 class="mb-3"> Programming Languages & Frameworks</h1>
-                <p class="text-muted"> Python (Expert), C++ (CUDA, Qt), C# (WPF, Unity) • <br>Java (JEE), Android •
-                  <br>Web (Django, FastAPI) • <br>LaTeX
-                </p>
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/deep-learning.png" alt="">
+                  <h3>Deep Learning</h3>
+                  <ul class="tech-tags">
+                    <li class="key">PyTorch</li>
+                    <li class="key">NVIDIA NeMo</li>
+                    <li class="key">PyTorch Lightning</li>
+                    <li>DeepSpeed</li>
+                    <li>TensorFlow</li>
+                    <li>Keras</li>
+                    <li>CUDA</li>
+                    <li>TensorRT</li>
+                    <li>Weights &amp; Biases</li>
+                  </ul>
+                </div>
               </div>
+
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/innovation.png" alt="">
+                  <h3>Generative AI &amp; 3D</h3>
+                  <ul class="tech-tags">
+                    <li class="key">Hugging Face</li>
+                    <li class="key">vLLM</li>
+                    <li class="key">LLMs</li>
+                    <li class="key">RAG</li>
+                    <li>Ollama</li>
+                    <li>CLIP</li>
+                    <li>BERT / SBERT</li>
+                    <li>Vespa</li>
+                    <li>LangGraph</li>
+                    <li>Diffusion models</li>
+                    <li>VQ-GAN</li>
+                    <li>Blender API</li>
+                    <li>Trimesh</li>
+                    <li>Pymeshlab</li>
+                    <li>Kaolin</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-4" data-aos="fade-up">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/robot.png" alt="">
+                  <h3>Reinforcement Learning</h3>
+                  <ul class="tech-tags">
+                    <li class="key">Ray RLlib</li>
+                    <li>Stable-Baselines3</li>
+                    <li>Gym</li>
+                    <li>SimPy</li>
+                    <li>Unity ML-Agents</li>
+                    <li>Multi-agent design</li>
+                    <li>Curriculum learning</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/computer.png" alt="">
+                  <h3>Data &amp; Infrastructure</h3>
+                  <ul class="tech-tags">
+                    <li class="key">Git</li>
+                    <li class="key">Linux</li>
+                    <li class="key">Docker</li>
+                    <li class="key">Azure</li>
+                    <li>Metaflow</li>
+                    <li>Kubernetes</li>
+                    <li>AWS</li>
+                    <li>Airflow</li>
+                    <li>PySpark</li>
+                    <li>Palantir Foundry</li>
+                    <li>CI/CD</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-card text-center">
+                  <img src="assets/img/icons/coding.png" alt="">
+                  <h3>Languages &amp; Frameworks</h3>
+                  <ul class="tech-tags">
+                    <li class="key">Python</li>
+                    <li>C++ (CUDA, Qt)</li>
+                    <li>C# (WPF, Unity)</li>
+                    <li>Java (JEE)</li>
+                    <li>Android</li>
+                    <li>FastAPI</li>
+                    <li>Django</li>
+                    <li>LaTeX</li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -381,11 +528,8 @@
         <div class="section-title">
           <h2>Languages</h2>
 
-          <p class="lh-lg introduction-paragraph">Communication is the backbone of successful engineering. I offer a
-            rare linguistic profile that pairs <b>Native French</b> and <b>Full Professional Proficiency in English</b>
-            with a <b>self-taught JLPT N2 certification in Japanese</b>. This reflects not only my ability to work
-            across international borders but also a relentless drive for self-directed learning and professional growth
-
+          <p class="lh-lg introduction-paragraph">French is my native language, I work daily in English, and I taught
+            myself Japanese to <b>JLPT N2</b> before carrying out my Master's thesis at Osaka Metropolitan University.
           </p>
         </div>
 
@@ -402,7 +546,7 @@
             </div>
 
             <div class="progress">
-              <span class="skill">English <i class="val">Full Professional Proficiency</i></span>
+              <span class="skill">English <i class="val">C1</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
                 </div>
@@ -415,10 +559,9 @@
             </div>
 
             <div class="progress mt-2">
-              <span class="skill">Japanese <i class="val">High Professional Proficiency (B2-C1) — JLPT N2
-                  (Self-taught)</i></span>
+              <span class="skill">Japanese <i class="val">JLPT N2 (self-taught)</i></span>
               <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
                 </div>
               </div>
 
@@ -427,12 +570,11 @@
                   class="fa-solid fa-file-lines"></i>
                 Japanese Language Proficiency Test N2 Certificate</a>
             </div>
-          </div>
-
-          <div class="progress">
-            <span class="skill">German <i class="val">B1</i></span>
-            <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress mt-2">
+              <span class="skill">German <i class="val">A2</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                </div>
               </div>
             </div>
           </div>
@@ -453,19 +595,6 @@
 
         <div class="row">
           <div class="col-md-6" data-aos="fade-up">
-            <!-- <h3 class="resume-title">Sumary</h3>
-            <div class="resume-item pb-0">
-              <h4>Alex Smith</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and
-                  developing user-centered digital/print marketing material from initial concept to final, polished
-                  deliverable.</em></p>
-              <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
-              </ul>
-            </div> -->
-
             <h3 class="resume-title">Education</h3>
             <div class="resume-item">
               <h4>Master thesis</h4>
@@ -521,6 +650,31 @@
                 Grade Transcript</a>
               </p>
             </div>
+            <h3 class="resume-title">Publications</h3>
+            <div class="resume-item">
+              <h4>Unified Zero-Shot Time Series Forecasting: A Darts Foundation</h4>
+              <h5>arXiv preprint, 2026</h5>
+              <p><em><a href="https://arxiv.org/abs/2606.27438">arxiv.org/abs/2606.27438</a></em></p>
+              <p>
+                Presents the foundation-model capabilities added to <b>Darts</b>, including the fine-tuning support
+                I built, which lets pretrained forecasters be adapted to a user's own data through layer freezing or
+                end-to-end training.
+              </p>
+            </div>
+            <div class="resume-item">
+              <h4>SOON: Social Network of Machines to Optimize Task Scheduling in Smart Manufacturing</h4>
+              <h5>IEEE PIMRC 2021</h5>
+              <p><em><a
+                    href="https://ieeexplore.ieee.org/document/9569644">ieeexplore.ieee.org/document/9569644</a></em>
+              </p>
+              <p>
+                Third author, published under my previous name, F. Abdalla. Multi-agent reinforcement learning for
+                production
+                scheduling in a simulated manufacturing workshop, where the trained agents reached the mathematically
+                minimum number of production steps on every hand-computed scenario, including mid-production machine
+                breakdowns and parallel orders of differing length.
+              </p>
+            </div>
           </div>
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
             <h3 class="resume-title">Professional Experience</h3>
@@ -529,12 +683,15 @@
               <h5>September 2025 - Present</h5>
               <p><em>Unit8, Lausanne / Zürich, Switzerland</em></p>
               <ul>
-                <li><strong>LLM Orchestration</strong> Engineered high-reasoning HR agents using advanced RAG
-                  (Retrieval-Augmented Generation) and prompt orchestration, focusing on response grounding and logic
-                  consistency.
+                <li><strong>Open Source Contribution</strong>: Built the fine-tuning capability in <b>Darts</b>, the
+                  9.5k-star open-source Python forecasting library, so pretrained forecasters can be adapted to new
+                  data by freezing layers or fine-tuning end-to-end. Previously they could only be used as-is or
+                  trained from scratch.
                 </li>
-                <li><strong>Open Source Leadership</strong>: Actively contributing to the Darts time-series library,
-                  implementing core features and resolving complex architectural issues via peer-reviewed pull requests.
+                <li><strong>Data Lineage & Compliance</strong>: Gave a large Swiss reinsurer its first consolidated
+                  view of data moving in and out of its self-service <b>Palantir Foundry</b> services, reverse-
+                  engineering undocumented Foundry APIs to get at metadata the platform would not expose. Wired it
+                  into daily alerts that chase unmapped data sources and revoke access after 30 days.
                 </li>
               </ul>
             </div>
@@ -543,12 +700,24 @@
               <h5>September 2023 - August 2025</h5>
               <p><em>ORamaVR, Geneva, Switzerland</em></p>
               <ul>
-                <li><strong>Text-to-3D generation: </strong> Developed an octree-based
-                  tokenization system, enabling high-precision text-to-3D generation and transformer-based editing.
+                <li><strong>Text-to-3D generation: </strong> Co-designed an octree-based tokenization system that cut
+                  sequence length from <b>9 tokens per face to 3</b>, one per vertex, tripling the mesh complexity
+                  that fits in a fixed context window. Triangle-strip encoding was validated for a further 50-60% on
+                  top. Enabled high-precision text-to-3D generation and transformer-based editing.
+                </li>
+                <li><strong>Inference Optimization: </strong>Rebuilt the test-time pipeline around <b>vLLM</b> with
+                  batching and memory optimizations, cutting single-mesh generation from <b>5-10 minutes to 30-60
+                    seconds</b> and moving generation out of offline batch into interactive range.
                 </li>
                 <li><strong>Large-Scale Data Engineering: </strong>Designed and implemented a scalable pipeline to
-                  process millions of 3D meshes and generate semantic captions, optimizing data workflows for complex
-                  generative tasks.
+                  process and caption 3D meshes across <b>ShapeNet</b>, <b>MedShapeNet</b>, <b>Objaverse</b> and
+                  <b>ShapeTalk</b>, covering scaling, decimation, mesh cleaning and multi-angle rendering, orchestrated
+                  with <b>Metaflow</b> and published as versioned HuggingFace datasets.
+                </li>
+                <li><strong>Applied Research: </strong>Implemented the <b>Cap3D</b> captioning methodology, swapping
+                  the paper's BLIP and ChatGPT stages for a locally hosted vision-language model to remove per-caption
+                  API cost. Also explored Gaussian splatting as an alternative representation and rejected it, since
+                  marching-cubes reconstruction produced meshes too heavy for VR.
                 </li>
                 <li>
                   <strong>Semantic Scene Synthesis:</strong> Enhanced 3D scene generation capabilities by
@@ -560,10 +729,10 @@
                   and Blender.
                 </li>
                 <li>
-                  <strong>Cloud Training & Experimentation: </strong>Managed multi-model training cycles on <b>Azure</b>
-                  and
-                  <b>SaturnCloud</b>, utilizing <b>Weights & Biases</b> for rigorous experiment tracking and performance
-                  evaluation.
+                  <strong>Cloud Training & Experimentation: </strong>Ran the full training and evaluation loop on a
+                  single <b>8&times;A100</b> node on <b>Azure</b>, using NeMo's multi-GPU training optimizations and
+                  <b>Weights & Biases</b> for experiment tracking. Sole engineer on the workstream, presenting results
+                  and setting the next round of experiments with a supervising research scientist.
                 </li>
                 <li><strong>Advanced ML Implementation: </strong> Accelerated R&D cycles by integrating modern
                   frameworks like NeMo and HuggingFace into the core 3D synthesis pipeline, enabling the rapid
@@ -572,8 +741,8 @@
               </ul>
             </div>
             <div class="resume-item">
-              <h4>Research Engineer in Data Science</h4>
-              <h5>September 2020 - Present</h5>
+              <h4>Research Assistant</h4>
+              <h5>September 2020 - August 2023</h5>
               <p><em>Haute Ecole Arc, Neuchâtel, Switzerland</em></p>
               <ul>
                 <li><strong>Full-Lifecycle Development</strong>: Led AI projects from initial client requirements and
@@ -596,6 +765,7 @@
                 </li>
               </ul>
             </div>
+
             <h3 class="resume-title">Certifications</h3>
             <div class="resume-item">
               <h4>Hugging Face Deep Reinforcement Learning Course</h4>
@@ -631,14 +801,14 @@
 
         <div class="section-title">
           <h2>Projects</h2>
-          <p class="lh-lg introduction-paragraph">My portfolio represents a convergence of academic research and
-            production-grade engineering. These projects demonstrate my ability to architect complex neural networks,
-            design autonomous systems through Reinforcement Learning, and build robust data pipelines for real-world
-            industrial applications.
+          <p class="lh-lg introduction-paragraph">A mix of generative models, reinforcement learning, computer vision
+            and the data infrastructure underneath them, built for clients ranging from the European Space Agency to a
+            viticulture institute. Each page covers what the problem was, what I built, and what came out of it,
+            including the approaches that did not work.
           </p>
           <p class="lh-lg introduction-paragraph">
-            Beyond technical research, I am a high-velocity problem solver. A skill I sharpen through international Game
-            Jams, where rapid prototyping and collaborative execution are paramount.
+            The game jam entries at the end are a different kind of exercise: building something playable from nothing
+            in 48 hours, with friends.
           </p>
         </div>
 
@@ -761,8 +931,6 @@
                 <div class="row">
                   <p class="col-md">High-performance video loading pipeline with optimal scene detection.</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/SceneDataset.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a> -->
                     <a href="https://github.com/Kurokabe/SceneDataset" class="details-link" title="More Details"><i
                         class="bx bx-link"></i></a>
                   </div>
@@ -781,8 +949,6 @@
                   <p class="col-md">Frame-conditioned video synthesis using VQ-GAN and transformers (Tensorflow
                     implementation)</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/ganime_logo.gif" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a> -->
                     <a href="https://github.com/Kurokabe/GANime" class="details-link" title="More Details"><i
                         class="bx bx-link"></i></a>
                   </div>
@@ -801,8 +967,6 @@
                   <p class="col-md">Multi-agent optimization for industrial workshop throughput.
                   </p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/soon.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="SOON-RL"><i class="bx bx-plus"></i></a> -->
                     <a href="soon_rl.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
@@ -820,8 +984,6 @@
                   <p class="col-md">Anomaly detection and root-cause analysis for satellite telemetry.
                     data</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/dl4space.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="DL4Space"><i class="bx bx-plus"></i></a> -->
                     <a href="dl4space.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
@@ -839,8 +1001,6 @@
                   <p class="col-md">Urban image classification specialized for highly imbalanced datasets.
                   </p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/modos.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="MoDoS"><i class="bx bx-plus"></i></a> -->
                     <a href="modos.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
@@ -857,8 +1017,6 @@
                 <div class="row">
                   <p class="col-md">XAI-driven decision support system for high-frequency currency trading.</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/ppi.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="PPI"><i class="bx bx-plus"></i></a> -->
                     <a href="ppi.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
@@ -898,8 +1056,6 @@
                 <div class="row">
                   <p class="col-md"> GMTK Game Jam 2020 with the theme: Out of Control</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/clippy.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="Mark and Clippy"><i class="bx bx-plus"></i></a> -->
                     <a href="https://the-wildfire.itch.io/clippy-and-mark" class="details-link" title="More Details"><i
                         class="bx bx-link"></i></a>
                   </div>
@@ -921,8 +1077,6 @@
                   <p class="col-md">Multi-label classification for automated quality control documentation.
                   </p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/ceramaret.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="K-Defaults"><i class="bx bx-plus"></i></a> -->
                     <a href="kdefaults.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                   </div>
                 </div>
@@ -942,8 +1096,6 @@
                     Ludum Dare 46 (theme : keep it alive)
                   </p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/magic_valley.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="Magic Valley"><i class="bx bx-plus"></i></a> -->
                     <a href="https://spicypaper.itch.io/magic-valley" class="details-link" title="More Details"><i
                         class="bx bx-link"></i></a>
                   </div>
@@ -963,8 +1115,6 @@
                   <p class="col-md">Game created for the GMTK 2021 Game Jam with the theme:
                     Joined Together</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/magnet_arena.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="Magnet Arena"><i class="bx bx-plus"></i></a> -->
                     <a href="https://spicypaper.itch.io/magnet-arena" class="details-link" title="More Details"><i
                         class="bx bx-link"></i></a>
                   </div>
@@ -984,9 +1134,6 @@
                   <p class="col-md">Game created for the Ludum Dare 45 Game Jam with the theme:
                     Start with nothing</p>
                   <div class="col-1">
-                    <!-- <a href="assets/img/portfolio/empty_one.png" data-gallery="portfolioGallery"
-                      class="portfolio-lightbox preview-link" title="The Legend of the Empty One"><i
-                        class="bx bx-plus"></i></a> -->
                     <a href="https://spicypaper.itch.io/the-legend-of-the-empty-one" class="details-link"
                       title="More Details"><i class="bx bx-link"></i></a>
                   </div>
@@ -999,159 +1146,8 @@
         </div>
     </section><!-- End Portfolio Section -->
 
-    <!-- ======= Services Section ======= -->
-    <!-- <section id="services" class="services">
-      <div class="container">
 
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-            in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up">
-            <div class="icon"><i class="bi bi-briefcase"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-              occaecati cupiditate non provident</p>
-          </div>
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon"><i class="bi bi-card-checklist"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat tarad limino ata</p>
-          </div>
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon"><i class="bi bi-bar-chart"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-              fugiat nulla pariatur</p>
-          </div>
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon"><i class="bi bi-binoculars"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum</p>
-          </div>
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon"><i class="bi bi-brightness-high"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-              voluptatum deleniti atque</p>
-          </div>
-          <div class="col-md-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
-              soluta nobis est eligendi</p>
-          </div>
-        </div>
-
-      </div>
-    </section> -->
-
-    <!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- <section id="testimonials" class="testimonials section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Testimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-            in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium
-                  quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div>
-            
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis
-                  quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div>
-            
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim
-                  tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div>
-            
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit
-                  minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div>
-            
-
-            <div class="swiper-slide">
-              <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
-                  labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div>
-            
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section> -->
-    <!-- End Testimonials Section -->
-
-    <!-- ======= Certificates Section ======= -->
+    <!-- ======= Hobbies Section ======= -->
 
     <section id="hobbies" class="hobbies section-bg">
       <div class="container">

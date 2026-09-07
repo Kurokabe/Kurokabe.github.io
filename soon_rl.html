@@ -158,6 +158,16 @@
         <div class="row">
           <div class="portfolio-description">
 
+            <h2>Evaluating the Agents</h2>
+            <p>
+              Comparing a trained scheduler against a heuristic only tells you it beat that heuristic. So for each
+              scenario I worked out by hand the minimum number of production steps required to fulfil the orders,
+              including the scenarios where a machine breaks down partway through, and used that figure as the target.
+            </p>
+            <p>
+              The trained agents reached that minimum in every scenario.
+            </p>
+
             <h2>Technical Details & Scenarios</h2>
             <p>
               The core challenge was orchestrating a sequence of machines (e.g., producing part A1 → B1 → C1) that

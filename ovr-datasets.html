@@ -152,11 +152,59 @@
                             </p>
                         </div>
                     </div>
-                    <!-- <div class="row gy-4">
-          <div class="portfolio-description">
-            <h2>Details</h2>
-          </div>
-        </div> -->
+                </div>
+                <div class="row gy-4">
+                    <div class="portfolio-description">
+                        <h2>The Corpora</h2>
+                        <p>
+                            Public 3D datasets vary wildly in scale, orientation, face count and cleanliness, and
+                            carry no usable text annotations. The pipeline standardized across several of them:
+                        </p>
+                        <ul>
+                            <li><strong>ShapeNet</strong> (55k meshes)</li>
+                            <li><strong>MedShapeNet</strong> (100k, medical anatomy)</li>
+                            <li><strong>Objaverse</strong> (800k)</li>
+                            <li><strong>ShapeTalk</strong>, used separately for mesh editing, pairing a source and
+                                target mesh with an edit prompt such as <em>"the arms are longer and the legs
+                                    shorter."</em></li>
+                        </ul>
+
+                        <h2>Processing</h2>
+                        <p>
+                            Each mesh went through unit-box scaling, decimation that reduces face count while
+                            preserving surface properties, degenerate-face removal and general cleaning, plus
+                            multi-angle rendering to produce the paired image data needed for image-to-3D. Built with
+                            the <strong>Blender API</strong>, <strong>pymeshlab</strong>, <strong>trimesh</strong> and
+                            <strong>Kaolin</strong>, parallelised with <strong>Metaflow</strong>.
+                        </p>
+                        <p>
+                            Every processed source was published as a versioned <strong>HuggingFace</strong> dataset
+                            with a custom loader, so a training run could select which datasets to use and filter down
+                            to individual categories straight from its config file.
+                        </p>
+
+                        <h2>Captioning: Adapting Cap3D</h2>
+                        <p>
+                            Text-conditioned generation needs captions, and hand-labelling a corpus this size was
+                            never an option. I implemented the <strong>Cap3D</strong> methodology, which renders each
+                            mesh from multiple views, uses CLIP to pick the best caption of five per view, and has an
+                            LLM summarize across views.
+                        </p>
+                        <p>
+                            Rather than the paper's BLIP and ChatGPT stages, I substituted a locally hosted
+                            vision-language model served through <strong>Ollama</strong>, starting with LLaVA and
+                            moving to <strong>Gemma 3</strong> on release for better caption quality. This removed the
+                            per-caption API cost entirely.
+                        </p>
+
+                        <h2>Throughput and Limits</h2>
+                        <p>
+                            The full pipeline, from mesh loading through cleaning, rendering, captioning and saving,
+                            ran at roughly <strong>30 seconds per mesh</strong> and parallelised cleanly. Meshes with
+                            millions of faces, such as landscape scans, were the one category that could not be
+                            usefully processed.
+                        </p>
+                    </div>
                 </div>
         </section><!-- End Portfolio Details Section -->
 
