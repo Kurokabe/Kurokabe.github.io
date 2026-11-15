@@ -9,7 +9,7 @@ Biel/Bienne, Switzerland · Swiss citizen, no work permit required
 
 ## Summary
 
-Machine Learning Engineer with 6 years shipping production AI systems across industry and academic research. Specialized in generative models for visual modalities — images, video and 3D meshes — and in the infrastructure that trains and serves them: multi-GPU distributed PyTorch training, data pipelines over ~1M meshes, and 10x inference speedups with vLLM. Contributor to Darts, the 9.5k-star open-source forecasting library, where I built its model fine-tuning capability, published as an arXiv preprint. M.Sc. in Data Science, thesis graded 6.0/6.0.
+Machine Learning Engineer with 6 years shipping production AI systems across industry and academic research. Specialized in generative models for visual modalities — images, video and 3D meshes — and in the infrastructure that trains and serves them: multi-GPU distributed PyTorch training, data pipelines over ~1M meshes, and 10x inference speedups with vLLM. Contributor to Darts, the 9.6k-star open-source forecasting library, where I built fine-tuning for its time-series foundation models and made autoregressive backtesting up to 100x faster; third author of the arXiv preprint presenting its foundation-model support. M.Sc. in Data Science, thesis graded 6.0/6.0.
 
 ---
 
@@ -18,7 +18,8 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 ### Data & AI Engineer | Unit8
 *September 2025 – Present | Lausanne / Zurich, Switzerland*
 
-- Built the fine-tuning capability in Darts, the 9.5k-star open-source Python forecasting library, where PyTorch and foundation models could previously only be used as-is or trained from scratch; pretrained forecasters can now be adapted to a user's own data by freezing selected layers or fine-tuning end-to-end, removing the need to retrain from scratch for every new dataset.
+- Built fine-tuning into Darts, the 9.6k-star open-source Python forecasting library, where time-series foundation models (Chronos-2, TimesFM 2.5) could only be used as-is and PyTorch models only trained from scratch: one parameter now adapts any of them to a user's data, end-to-end or by freezing and unfreezing layers by name pattern, with save/reload support and a tutorial notebook; shipped as a headline feature of release 0.42.0 and described in a co-authored arXiv preprint.
+- Made autoregressive backtesting in Darts 50–100x faster for its regression models (linear regression, LightGBM, XGBoost): historical forecasts with horizons beyond the model's output length fell back to forecasting each point in turn, so I extended the optimized path to compute every autoregressive step for all historical points at once, with identical results, leaving every historical-forecasting scenario in the library optimized (release 0.40.0).
 - Built an LLM knowledge assistant for the finance team of a global leather chemicals company, turning the monthly Price-Volume-Mix (PVM) variance research behind its Board reporting into a conversation; analysts ask why sales moved against budget, forecast or prior year and get a board-ready answer with drivers and market context, cutting research that took each analyst 2–3 days per reporting cycle to about half a day (20–30 analyst-days freed per analyst per year).
 - Designed the agent on Snowflake Cortex so the model never does the arithmetic: every figure comes from text-to-SQL over semantic views of a pre-computed PVM bridge, meeting the client's zero-calculation-error requirement, while hybrid search over industry newsletters supplies the market reasons behind each variance; tuned its analyst playbook through 5 evaluated iterations against a 36-question ground-truth set built from the finance team's own past reports.
 - Took the assistant from prototype to a production-grade platform: dev, test and prod environments on Azure provisioned with Bicep, and a daily, re-runnable ingestion job into Snowflake that detects late month-end corrections and alerts the team rather than silently overwriting figures already presented to leadership.
@@ -62,7 +63,8 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 ## Publications & Selected Projects
 
 ### [Unified Zero-Shot Time Series Forecasting: A Darts Foundation](https://arxiv.org/abs/2606.27438) | arXiv preprint, 2026
-- Presents the foundation-model capabilities added to Darts, including the fine-tuning support I built that lets pretrained forecasters be adapted to user data through layer freezing or end-to-end training.
+- Third author, with Zhihao Dai (University of Oxford) and Dennis Bader (Unit8).
+- Presents Darts' unified interface for time-series foundation models (Chronos-2, TimesFM 2.5, TiRex, PatchTST-FM) for zero-shot and fine-tuned forecasting, uncertainty estimation and backtesting, with zero-shot results within 1.3% of the original implementations; I contributed the fine-tuning support (end-to-end, or by freezing and unfreezing layers by name pattern).
 
 ### [SOON: Social Network of Machines to Optimize Task Scheduling in Smart Manufacturing](https://ieeexplore.ieee.org/document/9569644) | IEEE PIMRC 2021
 - Third author; published under the name F. Abdalla.
@@ -98,6 +100,26 @@ Escape games, weightlifting, anime and manga
 
 Fuller records than the role bullets above. Not for sending as-is: pick the entries matching a given
 job description and compress them into role bullets. The **Best for** line is the filter.
+
+### Darts: Open-Source Time-Series Forecasting | Unit8, 2025–2026
+
+**Links:** [github.com/unit8co/darts](https://github.com/unit8co/darts) (9.6k stars, ~1.1k forks) · GitHub user Kurokabe (one early PR as agysi) · credited by name in the changelog of releases 0.38.0, 0.40.0 and 0.42.0.
+
+**Contributions:**
+- *Fine-tuning for foundation and PyTorch models* (PR #3003, release 0.42.0, headline feature): `enable_finetuning` on every `TorchForecastingModel` and `FoundationModel` (Chronos-2, TimesFM 2.5…). `True` trains end-to-end; a dict of `freeze` / `unfreeze` wildcard patterns (e.g. `{"unfreeze": ["output_*"]}`) trains only the matching layers. Fine-tuned models save and reload normally; tutorial notebook `26-Chronos-2-finetuning-examples`. ~1,800 lines across 24 files, with tests.
+- *Optimized autoregressive historical forecasts* (PR #2921, release 0.40.0, headline feature): applies to `SKLearnModel` (Darts' regression models). The optimized backtesting path only worked when `forecast_horizon <= output_chunk_length`; extended it to autoregression so every step is predicted for all historical points in one batched call. My first version added an extra dimension to the tabularized input; before merging, the maintainer replaced that with on-the-fly slicing of the full input matrix to avoid duplicating data in memory. Changelog: "increasing throughput by multiple orders of magnitude! Now all historical forecasting scenarios are optimized." Fixed 3 issues.
+  - *Benchmark (own, Nov 2026, Darts 0.41, `LinearRegressionModel`, 48 lags, `retrain=False`, `stride=1`):* optimized vs. the previous fallback loop, identical outputs: 64x on 239 forecasts, 88x on 489, 100x on 989 (horizon 12, output length 1); 48–50x with horizon 24, output length 6, up to 2,477 forecasts. Times: 0.74 s → 0.007 s at 989 forecasts.
+- *Variable-length series for foundation models* (PR #3125, closed): prototype that left-pads short series for training and inference, validated on a fev-bench subset; the maintainers shipped the feature in their own PR (#3154) and closed mine with thanks.
+- *Reversible instance normalization for covariates* (PR #3175, open/in review): RINorm extended from the target to past and future covariates, per group or per named component, fully backward compatible.
+- *Naive model saving fix* (PR #2895, release 0.38.0).
+
+**Publication:** *Unified Zero-Shot Time Series Forecasting: A Darts Foundation*, arXiv 2606.27438 (June 2026). Z. Dai, D. Bader, A. Gysi. Fine-tuning is section 2.6. The paper reports zero-shot validation on fev-bench-mini (within 1.3% of the original implementations), not fine-tuning results.
+
+**Stack:** Python, PyTorch, PyTorch Lightning, NumPy, pytest
+
+**Best for:** ML Engineer roles (primary): transfer learning and fine-tuning of pretrained models, PyTorch internals, performance optimization, and open-source engineering in a library used by thousands. The strongest Unit8 material for ML roles: lead the Unit8 section with it.
+
+---
 
 ### FP&A Knowledge Assistant: LLM Agent for Price-Volume-Mix Variance Analysis | Unit8, 2026
 
@@ -375,7 +397,7 @@ selection from it.
 
 **Emphasis by target**
 - *Unit8 role, for ML Engineer applications (the default target):* the role has more bullets than a
-  sent CV should carry. Keep Darts, then 2–3 LLM bullets (translator layout/evaluation, FP&A agent
+  sent CV should carry. Keep both Darts bullets first, then 2–3 LLM bullets (translator layout/evaluation, FP&A agent
   design), and the reinsurer lineage bullet only if a line is left. Never lead with it: the target is
   ML engineering, not data engineering.
 - *AI engineering / applied LLM roles:* lead with the FP&A Knowledge Assistant (agent design,
@@ -412,6 +434,15 @@ selection from it.
 - *Translator business criteria examples* (8.2M CHF claims, 20,000 KYC scans, 7,000 briefs…) — these
   were sample metrics from other projects in the client's criteria template, not this project.
 - *Translator usage or adoption figures* — none recorded.
+- *Darts: LoRA / PEFT fine-tuning* — PR #3003 demonstrates LoRA through a callback in its notebook, but
+  the paper lists parameter-efficient fine-tuning as unsupported. Don't claim LoRA support.
+- *Darts: variable-length support as my feature* — my PR was a prototype; the shipped version is the
+  maintainers' (#3154). Mention it only as a prototype that fed into the feature.
+- *Darts: covariate RINorm as shipped* — still in review at the time of writing.
+- *Darts: "multiple orders of magnitude"* — the changelog's wording, but my benchmark measured 50–100x
+  (about two orders). Use "50–100x" or "up to 100x".
+- *Darts: backtesting speed-up for PyTorch or foundation models* — the optimization covers the
+  regression models (`SKLearnModel`) only.
 
 **Still open**
 - Whether the SwissRe engagement can be named, or must stay "a large Swiss reinsurer".

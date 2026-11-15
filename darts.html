@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQEKRDTRTD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-YQEKRDTRTD');
+  </script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Project Darts</title>
+  <meta content="Open-source contributions to Darts: fine-tuning for time-series foundation models and optimized autoregressive backtesting" name="description">
+  <meta content="Darts, time series, foundation models, fine-tuning, PyTorch, open source, Chronos-2, TimesFM" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.10.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle profile-img">
+        <h1 class="text-light"><a href="index.html">Alain Gysi</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="https://www.github.com/Kurokabe" class="github"><i class="bx bxl-github"></i></a>
+          <a href="https://www.linkedin.com/in/alain-gysi/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          <a href="https://huggingface.co/Kurokabe"><img src="assets/img/icons/huggingface.png" class="huggingface"></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="index.html" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a>
+          </li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Darts Details</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Darts Details</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row align-items-center">
+
+          <div class="col-lg-6">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/darts.svg" alt="Darts logo">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="portfolio-info">
+              <h3>Project information</h3>
+              <ul>
+                <li><strong>Company</strong>: Unit8</li>
+                <li><strong>Project URL</strong>: <a href="https://github.com/unit8co/darts">github.com/unit8co/darts</a></li>
+                <li><strong>Publication</strong>: <a href="https://arxiv.org/abs/2606.27438">Unified Zero-Shot Time Series
+                    Forecasting: A Darts Foundation</a> (arXiv, 2026)</li>
+                <li><strong>Categories</strong>: Time Series Forecasting, Foundation Models, Deep Learning, Open Source
+                </li>
+                <li><strong>Main technologies</strong>: Python, PyTorch, PyTorch Lightning, NumPy</li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Summary</h2>
+              <p>
+                <strong>Darts</strong> is Unit8's open-source Python library for time-series forecasting, with
+                <strong><span data-github-stars="unit8co/darts">9.6k</span> stars on GitHub</strong>. It puts everything from classical statistics to deep learning
+                and pretrained foundation models such as Chronos-2 and TimesFM behind one <code>fit</code> /
+                <code>predict</code> interface.
+              </p>
+              <p>
+                I built two features that were highlighted in the release notes: <strong>fine-tuning for foundation
+                  models</strong>, and <strong>backtesting up to 100x faster</strong> for autoregressive forecasts. I
+                also contributed smaller features and fixes, and I am third author of the preprint presenting the
+                library's foundation-model support.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row gy-4">
+          <div class="portfolio-description">
+            <h2>Fine-Tuning Foundation Models</h2>
+            <p>
+              Time-series foundation models forecast series they have never seen, but a model pretrained on public
+              data does not know a company's sales or a grid's load. In Darts they could only be used as they were,
+              and its other PyTorch models could only be trained from scratch.
+            </p>
+            <p>
+              I added a single <code>enable_finetuning</code> parameter to every PyTorch and foundation model. Set to
+              <code>True</code>, it trains the whole network; given a pattern such as
+              <code>{"unfreeze": ["output_*"]}</code>, it trains only the matching layers and keeps the rest of the
+              pretrained weights frozen, which is cheaper and less likely to overfit a small dataset. Fine-tuned
+              models save and reload like any other Darts model, and a tutorial notebook walks through each approach.
+              It shipped as a headline feature of <strong>release 0.42.0</strong>.
+            </p>
+
+            <h2>Faster Backtesting</h2>
+            <p>
+              Before trusting a forecasting model, you replay it over history: forecast from every past point and
+              compare with what actually happened. For its regression models (linear regression, LightGBM,
+              XGBoost…), Darts had a fast path that forecasts all those points at once, but only when the model could
+              cover the whole horizon in one shot. Longer horizons, where the model feeds its own predictions back in
+              step by step, fell back to forecasting each point one after the other.
+            </p>
+            <p>
+              I extended the fast path to these autoregressive forecasts: each step is now computed for every point
+              in history at once, as batched array operations. In my benchmark, backtests ran <strong>50 to 100
+                times faster</strong> with identical results, and every historical forecasting scenario in Darts is
+              now optimized (<strong>release 0.40.0</strong>).
+            </p>
+
+            <h2>Other Contributions</h2>
+            <ul>
+              <li><strong>Variable-length series for foundation models:</strong> a prototype letting short series be
+                used for training and prediction without manual padding, which fed into the version the maintainers
+                shipped.</li>
+              <li><strong>Normalization of covariates:</strong> extending reversible instance normalization from the
+                target series to past and future covariates (in review).</li>
+              <li><strong>Saving naive models:</strong> fixed a crash when saving a naive baseline straight after
+                training.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

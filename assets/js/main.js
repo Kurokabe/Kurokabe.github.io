@@ -254,9 +254,46 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Initiate Pure Counter
    */
   new PureCounter();
+
+  /**
+   * Live GitHub star counts.
+   * Usage: <span data-github-stars="owner/repo">9.6k</span>
+   * The text inside is the fallback, kept if GitHub can't be reached (e.g. its hourly rate limit).
+   * Counts are cached in the browser for 6 hours to stay well under that limit.
+   */
+  const formatStars = (count) =>
+    count >= 1000 ? (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(count)
+
+  const starElements = [...document.querySelectorAll('[data-github-stars]')]
+  const starRepos = [...new Set(starElements.map(el => el.dataset.githubStars))]
+
+  starRepos.forEach(repo => {
+    const cacheKey = 'github-stars:' + repo
+    const show = (count) => starElements
+      .filter(el => el.dataset.githubStars === repo)
+      .forEach(el => el.textContent = formatStars(count))
+
+    try {
+      const cached = JSON.parse(localStorage.getItem(cacheKey))
+      if (cached && Date.now() - cached.time < 6 * 60 * 60 * 1000) {
+        show(cached.count)
+        return
+      }
+    } catch (e) { /* storage unavailable: fetch instead */ }
+
+    fetch('https://api.github.com/repos/' + repo)
+      .then(response => response.ok ? response.json() : Promise.reject(response.status))
+      .then(data => {
+        show(data.stargazers_count)
+        try {
+          localStorage.setItem(cacheKey, JSON.stringify({ count: data.stargazers_count, time: Date.now() }))
+        } catch (e) { /* storage unavailable: nothing to cache */ }
+      })
+      .catch(() => { /* keep the fallback text */ })
+  })
 
 
 })()
