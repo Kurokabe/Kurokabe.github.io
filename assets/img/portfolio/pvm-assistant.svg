@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 830 520" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#149ddd"/>
+    </marker>
+  </defs>
+
+  <rect width="830" height="520" fill="#ffffff"/>
+
+  <text x="410" y="52" text-anchor="middle" font-size="22" font-weight="700" fill="#173b6c">From monthly close to plain-language answers</text>
+
+  <g font-size="15" text-anchor="middle">
+    <!-- Sources -->
+    <rect x="20" y="110" width="160" height="80" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="100" y="145" font-weight="700" fill="#173b6c">Sales, budget</text>
+    <text x="100" y="163" font-weight="700" fill="#173b6c">&amp; forecast</text>
+    <text x="100" y="181" font-size="12" fill="#5c6f86">Excel / CSV exports</text>
+
+    <rect x="20" y="250" width="160" height="80" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="100" y="286" font-weight="700" fill="#173b6c">Market</text>
+    <text x="100" y="304" font-weight="700" fill="#173b6c">newsletters</text>
+    <text x="100" y="321" font-size="12" fill="#5c6f86">PDF</text>
+
+    <!-- PVM pipeline -->
+    <rect x="220" y="110" width="160" height="80" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="300" y="145" font-weight="700" fill="#173b6c">PVM pipeline</text>
+    <text x="300" y="165" font-size="12" fill="#5c6f86">Price · Volume · Mix</text>
+    <text x="300" y="181" font-size="12" fill="#5c6f86">Python · pandas</text>
+
+    <!-- Azure Blob -->
+    <rect x="420" y="110" width="140" height="220" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="490" y="205" font-weight="700" fill="#173b6c">Azure Blob</text>
+    <text x="490" y="225" font-size="12" fill="#5c6f86">dev · test · prod</text>
+    <text x="490" y="241" font-size="12" fill="#5c6f86">Bicep</text>
+
+    <!-- Snowflake -->
+    <rect x="600" y="110" width="180" height="80" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="690" y="145" font-weight="700" fill="#173b6c">Semantic views</text>
+    <text x="690" y="165" font-size="12" fill="#5c6f86">PVM bridge, budget,</text>
+    <text x="690" y="181" font-size="12" fill="#5c6f86">forecast, invoices</text>
+
+    <rect x="600" y="250" width="180" height="80" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="690" y="285" font-weight="700" fill="#173b6c">Hybrid search</text>
+    <text x="690" y="305" font-size="12" fill="#5c6f86">parsed, chunked,</text>
+    <text x="690" y="321" font-size="12" fill="#5c6f86">embedded text</text>
+
+    <text x="690" y="94" font-size="12" font-weight="700" fill="#149ddd" letter-spacing="1">SNOWFLAKE</text>
+
+    <!-- Agent -->
+    <rect x="520" y="400" width="260" height="90" rx="10" fill="#149ddd"/>
+    <text x="650" y="436" font-size="17" font-weight="700" fill="#ffffff">AI analyst agent</text>
+    <text x="650" y="458" font-size="12" fill="#e8f5fc">text-to-SQL + retrieval</text>
+    <text x="650" y="474" font-size="12" fill="#e8f5fc">FP&amp;A report format</text>
+
+    <!-- Users -->
+    <rect x="20" y="400" width="200" height="90" rx="10" fill="#173b6c"/>
+    <text x="120" y="440" font-size="17" font-weight="700" fill="#ffffff">FP&amp;A team</text>
+    <text x="120" y="462" font-size="12" fill="#dce6f2">monthly presentation</text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#149ddd" stroke-width="2" fill="none">
+    <line x1="180" y1="150" x2="216" y2="150" marker-end="url(#arrow)"/>
+    <line x1="380" y1="150" x2="416" y2="150" marker-end="url(#arrow)"/>
+    <line x1="180" y1="290" x2="416" y2="290" marker-end="url(#arrow)"/>
+    <line x1="560" y1="150" x2="596" y2="150" marker-end="url(#arrow)"/>
+    <line x1="560" y1="290" x2="596" y2="290" marker-end="url(#arrow)"/>
+    <line x1="690" y1="330" x2="690" y2="396" marker-end="url(#arrow)"/>
+    <polyline points="780,150 806,150 806,445 784,445" marker-end="url(#arrow)"/>
+    <line x1="220" y1="430" x2="516" y2="430" marker-end="url(#arrow)"/>
+    <line x1="520" y1="462" x2="224" y2="462" marker-end="url(#arrow)"/>
+  </g>
+
+  <g font-size="12" fill="#5c6f86" text-anchor="middle">
+    <text x="578" y="212" font-style="italic">daily</text>
+    <text x="578" y="226" font-style="italic">job</text>
+    <text x="370" y="422">question</text>
+    <text x="370" y="482">variance, drivers, market context</text>
+  </g>
+</svg>

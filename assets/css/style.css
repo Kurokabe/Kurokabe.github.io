@@ -618,9 +618,16 @@ section {
 
 .portfolio .portfolio-item .portfolio-img {
   overflow: hidden;
+  aspect-ratio: 4 / 3;
 }
 
+/* Same frame for every card: the whole image is fitted inside it, centred,
+   with the transparent frame showing around images of a different shape */
 .portfolio .portfolio-item .portfolio-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: transparent;
   transition: all 0.8s ease-in-out;
 }
 

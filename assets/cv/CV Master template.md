@@ -19,6 +19,9 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 *September 2025 – Present | Lausanne / Zurich, Switzerland*
 
 - Built the fine-tuning capability in Darts, the 9.5k-star open-source Python forecasting library, where PyTorch and foundation models could previously only be used as-is or trained from scratch; pretrained forecasters can now be adapted to a user's own data by freezing selected layers or fine-tuning end-to-end, removing the need to retrain from scratch for every new dataset.
+- Built an LLM knowledge assistant for the finance team of a global leather chemicals company, turning the monthly Price-Volume-Mix (PVM) variance research behind its Board reporting into a conversation; analysts ask why sales moved against budget, forecast or prior year and get a board-ready answer with drivers and market context, cutting research that took each analyst 2–3 days per reporting cycle to about half a day (20–30 analyst-days freed per analyst per year).
+- Designed the agent on Snowflake Cortex so the model never does the arithmetic: every figure comes from text-to-SQL over semantic views of a pre-computed PVM bridge, meeting the client's zero-calculation-error requirement, while hybrid search over industry newsletters supplies the market reasons behind each variance; tuned its analyst playbook through 5 evaluated iterations against a 36-question ground-truth set built from the finance team's own past reports.
+- Took the assistant from prototype to a production-grade platform: dev, test and prod environments on Azure provisioned with Bicep, and a daily, re-runnable ingestion job into Snowflake that detects late month-end corrections and alerts the team rather than silently overwriting figures already presented to leadership.
 - Established data-lineage traceability across a large Swiss reinsurer's Palantir Foundry estate, where self-service Digital Services ingested data through data connections and third-party applications with no consolidated view of inflow and outflow; built the Foundry dataset that reconstructs that view, reverse-engineering undocumented Foundry APIs to extract metadata the platform did not expose, and put it in production on a daily rebuild.
 - Closed the compliance loop on unmapped data sources: detected non-compliant data connections and third-party applications, generated the notification dataset driving automated emails to the owning Digital Service owner, and implemented automatic access revocation for sources left unmapped past 30 days, bringing a class of non-compliance the reinsurer's existing alerting stack did not cover under daily detection.
 
@@ -47,8 +50,8 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 ## Languages & Technologies
 
 - **Machine Learning & AI:** PyTorch, PyTorch Lightning, Hugging Face Transformers, NVIDIA NeMo, DeepSpeed, vLLM, Ray (RLlib, Tune), scikit-learn, Weights & Biases
-- **Generative & Multimodal:** LLMs, diffusion models, vision-language models (LLaVA, Gemma), CLIP and SBERT embeddings, vector search (Vespa), retrieval-augmented generation, LangGraph, 3D mesh generation (MeshGPT, Kaolin, trimesh, Blender, USD)
-- **Data & Infrastructure:** Docker, Kubernetes, Azure, AWS, Airflow, Metaflow, PySpark, pandas, NumPy, CI/CD, distributed multi-GPU training
+- **Generative & Multimodal:** LLMs, LLM agents (Snowflake Cortex Agents), text-to-SQL, diffusion models, vision-language models (LLaVA, Gemma), CLIP and SBERT embeddings, vector and hybrid search (Vespa, Cortex Search), retrieval-augmented generation, LLM evaluation, LangGraph, 3D mesh generation (MeshGPT, Kaolin, trimesh, Blender, USD)
+- **Data & Infrastructure:** Docker, Kubernetes, Azure (Bicep), AWS, Snowflake, Airflow, Metaflow, PySpark, pandas, NumPy, CI/CD, distributed multi-GPU training
 - **Programming Languages:** Python, C++ (CUDA, Qt), C#, SQL
 - **Spoken:** French (native), English (C1, Cambridge First Certificate), Japanese (JLPT N2, self-taught), German (A2)
 
@@ -93,6 +96,32 @@ Escape games, weightlifting, anime and manga
 
 Fuller records than the role bullets above. Not for sending as-is: pick the entries matching a given
 job description and compress them into role bullets. The **Best for** line is the filter.
+
+### FP&A Knowledge Assistant: LLM Agent for Price-Volume-Mix Variance Analysis | Unit8, 2026
+
+**Client naming:** "a global leather chemicals company" (Basel-headquartered). Do not name the client.
+
+**Role:** Built most of the platform as part of a Unit8 team: Azure infrastructure, Snowflake ingestion and daily job, newsletter search, the agent's instructions, and the evaluation set and runner used to tune them. Integrated the existing PVM calculation into a single monthly pipeline with Snowflake-ready output; the core PVM business logic was largely colleagues' work.
+
+**Problem:** Each month the finance team explains to leadership (executive team, Board) why sales moved against prior year, prior month, budget and forecast. Preparing that variance commentary took **2–3 days of manual research per analyst** per reporting cycle *(baseline from the client's requirements document)*, with inconsistent narrative quality and little carried over from one month to the next.
+
+**Approach:**
+- *Data:* Python pipeline computes the PVM bridge (six comparisons: month vs prior year, prior month, budget, forecast; YTD vs prior year, budget) from invoice lines, budget and forecast. Synced to Azure Blob, loaded into Snowflake by a daily job. Separate dev/test/prod environments provisioned with Bicep, governance tags, network policies.
+- *Agent:* Snowflake Cortex Agent with text-to-SQL over four semantic views (PVM bridge, budget, forecast, invoice lines) plus Cortex Search over industry newsletters. Numbers always come from SQL, never from model arithmetic, which addresses the client's zero-calculation-error requirement.
+- *Analyst playbook in the instructions:* asks for clarification when the period (month/YTD) or comparison basis is ambiguous; drills from market application to region to product category, then to customer/SKU level; grounds findings in newsletter commentary; says explicitly when the data cannot support a confident answer; replies in a fixed executive format (summary, variance table, drivers, context, recommendation).
+- *Reliability:* incremental, re-runnable loads; late month-end invoice corrections are detected and emailed with the exact fix command instead of being silently applied.
+
+**Evaluation:** 36-question ground-truth set built from the finance team's own past reports, covering narrative variance explanations, format compliance and out-of-scope questions. Scores both answer correctness and tool routing. Instructions went through 5 evaluated iterations, shaped by feedback from the client's finance lead.
+
+**Results:**
+- *Time:* 2–3 days → about half a day per analyst per month (~80% less), i.e. 20–30 analyst-days freed per analyst per year over 12 cycles.
+- *Accuracy by design:* zero model-generated figures, every number traceable to a SQL query.
+
+**Stack:** Python, pandas, Snowflake (Cortex Agents, Cortex Analyst, Cortex Search, semantic views), Azure Blob Storage, Bicep, Bash, SQL
+
+**Best for:** AI engineering and applied LLM roles (primary): agents, text-to-SQL, RAG, LLM evaluation, enterprise data grounding. Also strong for data/analytics engineering and finance-sector roles. Pair with Shenlong to show retrieval work across two very different domains.
+
+---
 
 ### Mugiwara: Text- and Image-to-3D Mesh Generation | ORamaVR, 2023–2025
 
@@ -284,7 +313,14 @@ selection from it.
 - *PhD applications:* "data pipelines across ShapeNet, MedShapeNet and Objaverse" — names corpora an
   advisor recognises instantly and avoids a bare figure inviting a scale question.
 
+**Summary, AI engineering variant**
+- For applied LLM / AI engineering roles, add after the infrastructure clause: "and LLM agents
+  grounded in enterprise data, including a text-to-SQL and RAG assistant that cuts a finance team's
+  monthly variance research from days to hours."
+
 **Emphasis by target**
+- *AI engineering / applied LLM roles:* lead with the FP&A Knowledge Assistant (agent design,
+  "model never does the arithmetic", evaluation loop), then Shenlong for retrieval.
 - *ML engineering roles:* lead with the data platform, training and evaluation loop, and the vLLM
   inference work. These are the closest match to the day-to-day of the role.
 - *PhD applications:* lead with the octree tokenization contribution (a measurable architectural
@@ -303,6 +339,10 @@ selection from it.
   absent, which is the stronger and accurate claim.
 - *Caption-quality percentage* — no formal evaluation was run, only manual spot-checks during
   development. Cap3D's internal CLIP-based best-of-5 selection is the quality mechanism.
+- *FP&A assistant data volumes* (invoice lines, customers, materials) — only a few months were loaded
+  at first and the team later added the full year, so any count is both uncertain and growing.
+- *"Explains 80% of each variance"* — this was the client's requirement, never measured.
+- *Usage or adoption figures* for the FP&A assistant — none recorded.
 
 **Still open**
 - Whether the SwissRe engagement can be named, or must stay "a large Swiss reinsurer".
