@@ -25,8 +25,7 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 - Co-built an LLM document translator for Switzerland's largest renewable energy producer, served as an MCP server on Azure inside the company's AI chat assistant: users attach a Word, PowerPoint, Excel or PDF file and download it translated, technical terms following a company glossary and the layout intact, turning a 50-page report that would take a professional translator about a week around in under a minute (a 300-page document in about 90 seconds).
 - Solved the layout problem at the heart of the product, translations running up to a third longer than the boxes their source text filled: text is fitted through length budgets, font scaling floored at 80% and a single shorter rewording, while inline bold, italics and links travel through the model as numbered tags; rewrote the PDF pipeline to edit pages in place, raising its format preservation from 94% to over 99% so every test document clears the client's 95% target.
 - Designed from scratch the Format Preservation Rate metric and the evaluation harness behind that target: a synthetic corpus generator (15 templates across Word, PowerPoint, Excel and PDF in 5 languages, covering all 20 language pairs), independent checks across five families from page structure to inline formatting, defect-injection tests proving every check catches the defect it targets, and baseline comparison that fails any change introducing a regression.
-- Established data-lineage traceability across a large Swiss reinsurer's Palantir Foundry estate, where self-service Digital Services ingested data through data connections and third-party applications with no consolidated view of inflow and outflow; built the Foundry dataset that reconstructs that view, reverse-engineering undocumented Foundry APIs to extract metadata the platform did not expose, and put it in production on a daily rebuild.
-- Closed the compliance loop on unmapped data sources: detected non-compliant data connections and third-party applications, generated the notification dataset driving automated emails to the owning Digital Service owner, and implemented automatic access revocation for sources left unmapped past 30 days, bringing a class of non-compliance the reinsurer's existing alerting stack did not cover under daily detection.
+- Built in PySpark the first consolidated data-lineage view of a large Swiss reinsurer's Palantir Foundry platform, tracing how self-service digital services move data through data connections and third-party applications, including metadata recovered by reverse-engineering undocumented platform APIs; wired it into daily compliance enforcement that warns owners of unmapped sources and revokes access after 30 days.
 
 ### Machine Learning Engineer | ORamaVR
 *September 2023 – August 2025 | Geneva, Switzerland*
@@ -54,7 +53,7 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 
 - **Machine Learning & AI:** PyTorch, PyTorch Lightning, Hugging Face Transformers, NVIDIA NeMo, DeepSpeed, vLLM, Ray (RLlib, Tune), scikit-learn, Weights & Biases
 - **Generative & Multimodal:** LLMs, LLM agents (Snowflake Cortex Agents), MCP servers (FastMCP), text-to-SQL, diffusion models, vision-language models (LLaVA, Gemma), CLIP and SBERT embeddings, vector and hybrid search (Vespa, Cortex Search), retrieval-augmented generation, LLM evaluation, LangGraph, 3D mesh generation (MeshGPT, Kaolin, trimesh, Blender, USD)
-- **Data & Infrastructure:** Docker, Kubernetes, Azure (Bicep, Container Apps, AI Foundry), AWS, Snowflake, document processing (PyMuPDF, python-docx, python-pptx, openpyxl), Airflow, Metaflow, PySpark, pandas, NumPy, CI/CD, distributed multi-GPU training
+- **Data & Infrastructure:** Docker, Kubernetes, Azure (Bicep, Container Apps, AI Foundry), AWS, Snowflake, document processing (PyMuPDF, python-docx, python-pptx, openpyxl), Airflow, Metaflow, PySpark, Palantir Foundry, pandas, NumPy, CI/CD, distributed multi-GPU training
 - **Programming Languages:** Python, C++ (CUDA, Qt), C#, SQL
 - **Spoken:** French (native), English (C1, Cambridge First Certificate), Japanese (JLPT N2, self-taught), German (A2)
 
@@ -153,6 +152,29 @@ job description and compress them into role bullets. The **Best for** line is th
 **Stack:** Python, FastMCP, Azure AI Foundry (GPT models), Azure Container Apps, PyMuPDF, python-docx, python-pptx, openpyxl, lxml, pytest
 
 **Best for:** AI engineering and applied LLM roles: production LLM features beyond chat, MCP/tool integration, and especially **LLM evaluation** (designing a metric that can't be gamed and wiring it into regression gates). Also good for document-processing roles. Pair with the FP&A assistant to show two LLM products shipped for enterprise clients, each with its own evaluation.
+
+---
+
+### Data Lineage & Compliance on Palantir Foundry | Unit8
+
+*Low priority for ML Engineer roles: one bullet at most, or drop it.*
+
+**Client naming:** "a large Swiss reinsurer" / "a global Swiss reinsurance company". Whether the client can be named is still open (see below).
+
+**Role:** Data engineer embedded with the client's architecture team, working closely with its compliance team.
+
+**Problem:** Employees create self-service "digital services" on Foundry and connect them to company and external data through data connections and third-party applications (TPAs). Nobody had a consolidated view of data flowing between services, inside and outside Foundry. Owners were supposed to declare where each connection's data came from; most never did.
+
+**Approach:**
+- *Lineage:* a PySpark dataset rebuilt daily from the configuration of every data connection and TPA, showing inflow and outflow per digital service.
+- *Compliance:* detection of unmapped sources, plus notification datasets built to the compliance team's standards and plugged into their existing email pipeline: a first warning, a reminder 7 days before the 30-day deadline, then automatic access revocation.
+- *API scraping:* some metadata was only visible in the web interface; traced the browser's network calls to the undocumented APIs and wrapped them in a transform producing a clean dataset.
+
+**Results:** a class of non-compliance that no existing alert covered now checked daily across every data connection and TPA; enforcement runs without anyone chasing owners; tracing a service's data flow goes from clicking through each connection's configuration to one query.
+
+**Stack:** Python, PySpark, Palantir Foundry (transforms, schedules, data connections)
+
+**Best for:** data engineering or data governance roles, and regulated industries. For ML Engineer roles, the transferable signals are production PySpark pipelines and the API reverse-engineering, nothing more.
 
 ---
 
@@ -352,6 +374,10 @@ selection from it.
   monthly variance research from days to hours."
 
 **Emphasis by target**
+- *Unit8 role, for ML Engineer applications (the default target):* the role has more bullets than a
+  sent CV should carry. Keep Darts, then 2–3 LLM bullets (translator layout/evaluation, FP&A agent
+  design), and the reinsurer lineage bullet only if a line is left. Never lead with it: the target is
+  ML engineering, not data engineering.
 - *AI engineering / applied LLM roles:* lead with the FP&A Knowledge Assistant (agent design,
   "model never does the arithmetic", evaluation loop) and the AI Document Translator (layout fitting,
   FPR metric), then Shenlong for retrieval. If space allows only one Unit8 LLM project, pick the
