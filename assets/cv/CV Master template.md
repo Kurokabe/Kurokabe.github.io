@@ -22,6 +22,9 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 - Built an LLM knowledge assistant for the finance team of a global leather chemicals company, turning the monthly Price-Volume-Mix (PVM) variance research behind its Board reporting into a conversation; analysts ask why sales moved against budget, forecast or prior year and get a board-ready answer with drivers and market context, cutting research that took each analyst 2–3 days per reporting cycle to about half a day (20–30 analyst-days freed per analyst per year).
 - Designed the agent on Snowflake Cortex so the model never does the arithmetic: every figure comes from text-to-SQL over semantic views of a pre-computed PVM bridge, meeting the client's zero-calculation-error requirement, while hybrid search over industry newsletters supplies the market reasons behind each variance; tuned its analyst playbook through 5 evaluated iterations against a 36-question ground-truth set built from the finance team's own past reports.
 - Took the assistant from prototype to a production-grade platform: dev, test and prod environments on Azure provisioned with Bicep, and a daily, re-runnable ingestion job into Snowflake that detects late month-end corrections and alerts the team rather than silently overwriting figures already presented to leadership.
+- Co-built an LLM document translator for Switzerland's largest renewable energy producer, served as an MCP server on Azure inside the company's AI chat assistant: users attach a Word, PowerPoint, Excel or PDF file and download it translated, technical terms following a company glossary and the layout intact, turning a 50-page report that would take a professional translator about a week around in under a minute (a 300-page document in about 90 seconds).
+- Solved the layout problem at the heart of the product, translations running up to a third longer than the boxes their source text filled: text is fitted through length budgets, font scaling floored at 80% and a single shorter rewording, while inline bold, italics and links travel through the model as numbered tags; rewrote the PDF pipeline to edit pages in place, raising its format preservation from 94% to over 99% so every test document clears the client's 95% target.
+- Designed from scratch the Format Preservation Rate metric and the evaluation harness behind that target: a synthetic corpus generator (15 templates across Word, PowerPoint, Excel and PDF in 5 languages, covering all 20 language pairs), independent checks across five families from page structure to inline formatting, defect-injection tests proving every check catches the defect it targets, and baseline comparison that fails any change introducing a regression.
 - Established data-lineage traceability across a large Swiss reinsurer's Palantir Foundry estate, where self-service Digital Services ingested data through data connections and third-party applications with no consolidated view of inflow and outflow; built the Foundry dataset that reconstructs that view, reverse-engineering undocumented Foundry APIs to extract metadata the platform did not expose, and put it in production on a daily rebuild.
 - Closed the compliance loop on unmapped data sources: detected non-compliant data connections and third-party applications, generated the notification dataset driving automated emails to the owning Digital Service owner, and implemented automatic access revocation for sources left unmapped past 30 days, bringing a class of non-compliance the reinsurer's existing alerting stack did not cover under daily detection.
 
@@ -50,8 +53,8 @@ Machine Learning Engineer with 6 years shipping production AI systems across ind
 ## Languages & Technologies
 
 - **Machine Learning & AI:** PyTorch, PyTorch Lightning, Hugging Face Transformers, NVIDIA NeMo, DeepSpeed, vLLM, Ray (RLlib, Tune), scikit-learn, Weights & Biases
-- **Generative & Multimodal:** LLMs, LLM agents (Snowflake Cortex Agents), text-to-SQL, diffusion models, vision-language models (LLaVA, Gemma), CLIP and SBERT embeddings, vector and hybrid search (Vespa, Cortex Search), retrieval-augmented generation, LLM evaluation, LangGraph, 3D mesh generation (MeshGPT, Kaolin, trimesh, Blender, USD)
-- **Data & Infrastructure:** Docker, Kubernetes, Azure (Bicep), AWS, Snowflake, Airflow, Metaflow, PySpark, pandas, NumPy, CI/CD, distributed multi-GPU training
+- **Generative & Multimodal:** LLMs, LLM agents (Snowflake Cortex Agents), MCP servers (FastMCP), text-to-SQL, diffusion models, vision-language models (LLaVA, Gemma), CLIP and SBERT embeddings, vector and hybrid search (Vespa, Cortex Search), retrieval-augmented generation, LLM evaluation, LangGraph, 3D mesh generation (MeshGPT, Kaolin, trimesh, Blender, USD)
+- **Data & Infrastructure:** Docker, Kubernetes, Azure (Bicep, Container Apps, AI Foundry), AWS, Snowflake, document processing (PyMuPDF, python-docx, python-pptx, openpyxl), Airflow, Metaflow, PySpark, pandas, NumPy, CI/CD, distributed multi-GPU training
 - **Programming Languages:** Python, C++ (CUDA, Qt), C#, SQL
 - **Spoken:** French (native), English (C1, Cambridge First Certificate), Japanese (JLPT N2, self-taught), German (A2)
 
@@ -120,6 +123,36 @@ job description and compress them into role bullets. The **Best for** line is th
 **Stack:** Python, pandas, Snowflake (Cortex Agents, Cortex Analyst, Cortex Search, semantic views), Azure Blob Storage, Bicep, Bash, SQL
 
 **Best for:** AI engineering and applied LLM roles (primary): agents, text-to-SQL, RAG, LLM evaluation, enterprise data grounding. Also strong for data/analytics engineering and finance-sector roles. Pair with Shenlong to show retrieval work across two very different domains.
+
+---
+
+### AI Document Translator: Layout-Preserving LLM Translation | Unit8, 2026
+
+**Client naming:** "Switzerland's largest renewable energy producer". Do not name the client.
+
+**Role:** Team of four Unit8 engineers. Mine: the layout-fidelity work (overflow fitting for PowerPoint and PDF, inline-formatting markup, the PDF pipeline rewrite) and the whole evaluation framework (metric, corpus generator, checks, reporting, regression baselines). The MCP server, Azure infrastructure, glossary feature and load testing were teammates' work.
+
+**Problem:** Staff work across German, French, Italian and English. Translating a report or a deck meant days of agency turnaround, or a generic tool followed by rebuilding the layout by hand. The client set a **Format Preservation Rate ≥ 95%** as a success criterion before the project started.
+
+**Approach:**
+- *Product:* an MCP server on Azure Container Apps, called from the company's AI chat assistant (Langdock). The document is parsed into text segments (JSON), translated by an LLM on Azure AI Foundry (EU data zone) in parallel batches with an optional glossary of technical terms, then written back into the original file.
+- *Fitting (the hard part):* translations run longer than the source, and slide and PDF text sits in fixed-size boxes. Three steps: a length budget in the prompt (~110% of the source), font scaling down to 80% at most, then one request for a shorter rewording. PDFs are edited in place, so only the replaced text changes; page-bound Word sections keep their page count.
+- *Inline formatting:* bold, italic, colour and links become numbered `<f1>…</f1>` tags, so the model moves the formatting with the words it wraps.
+
+**Evaluation (designed and built alone):**
+- *Format Preservation Rate (FPR):* lists every formatting feature of the original (bold span, image position, merged cell, font size…) and checks each in the translation, across five equally weighted families: structure, layout & fit, block style, inline formatting, objects. Untranslated text counts as n/a, not pass, so skipping content can't game the score; reported alongside translation coverage and text integrity (numbers, links, language).
+- *Corpus:* generator of 15 templates (4 Word, 3 PowerPoint, 2 Excel, 6 PDF) in EN/DE/FR/IT/ES, in normal and "tight" densities where text fills its box: 26 documents per run, 130 for acceptance, all 20 ordered language pairs covered. Client documents kept as a confidential holdout, never used for tuning.
+- *Trustworthiness:* a deterministic pseudo-translator for free, reproducible regression runs; defect-injection tests (removed bold, deleted image, moved box…) prove each check fires; baselines fail any change that regresses a document.
+- *Findings:* surfaced a crash and about 20 classes of formatting failure across the four formats, written up for the team with file and line references.
+
+**Results:**
+- *PDF fidelity:* FPR 94% → over 99% (live runs: 94.3% with 1 of 3 documents passing → 99.6% with 3 of 3; 99.2% mean with 12 of 12 passing on the wider PDF set). Every PDF test document clears the 95% target.
+- *Speed (team result):* a 310-page book translated in 89 seconds on the test environment; load test puts throughput at about 220 pages a minute, limited by the model quota.
+- *Time vs. professional translation:* a 50-page report (~12,500 words) at ~2,500 words a day for a professional translator is about a week; the translator returns it in under a minute.
+
+**Stack:** Python, FastMCP, Azure AI Foundry (GPT models), Azure Container Apps, PyMuPDF, python-docx, python-pptx, openpyxl, lxml, pytest
+
+**Best for:** AI engineering and applied LLM roles: production LLM features beyond chat, MCP/tool integration, and especially **LLM evaluation** (designing a metric that can't be gamed and wiring it into regression gates). Also good for document-processing roles. Pair with the FP&A assistant to show two LLM products shipped for enterprise clients, each with its own evaluation.
 
 ---
 
@@ -320,7 +353,9 @@ selection from it.
 
 **Emphasis by target**
 - *AI engineering / applied LLM roles:* lead with the FP&A Knowledge Assistant (agent design,
-  "model never does the arithmetic", evaluation loop), then Shenlong for retrieval.
+  "model never does the arithmetic", evaluation loop) and the AI Document Translator (layout fitting,
+  FPR metric), then Shenlong for retrieval. If space allows only one Unit8 LLM project, pick the
+  translator for evaluation-heavy roles and the FP&A assistant for agent or data-heavy roles.
 - *ML engineering roles:* lead with the data platform, training and evaluation loop, and the vLLM
   inference work. These are the closest match to the day-to-day of the role.
 - *PhD applications:* lead with the octree tokenization contribution (a measurable architectural
@@ -343,6 +378,14 @@ selection from it.
   at first and the team later added the full year, so any count is both uncertain and growing.
 - *"Explains 80% of each variance"* — this was the client's requirement, never measured.
 - *Usage or adoption figures* for the FP&A assistant — none recorded.
+- *Translator: "≥ 95% format preservation across all formats"* — verified for PDF only. The one
+  live run covering every format (before the later fixes) had Word 100%, PDF 93%, PowerPoint 84%,
+  Excel 82%, and no later all-format live run exists.
+- *Translator speed as a personal result* — the 89-second / 220-pages-a-minute figures come from
+  teammates' performance work; use them to describe the product, not as something I optimised.
+- *Translator business criteria examples* (8.2M CHF claims, 20,000 KYC scans, 7,000 briefs…) — these
+  were sample metrics from other projects in the client's criteria template, not this project.
+- *Translator usage or adoption figures* — none recorded.
 
 **Still open**
 - Whether the SwissRe engagement can be named, or must stay "a large Swiss reinsurer".

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#149ddd"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="600" fill="#ffffff"/>
+
+  <text x="400" y="58" text-anchor="middle" font-size="24" font-weight="700" fill="#173b6c">Translate the words, keep the document</text>
+
+  <!-- MCP server frame -->
+  <rect x="280" y="100" width="490" height="390" rx="14" fill="none" stroke="#9fb3c8" stroke-width="1.5" stroke-dasharray="6 5"/>
+  <text x="525" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#5c6f86" letter-spacing="1">MCP SERVER · AZURE</text>
+
+  <g font-size="15" text-anchor="middle">
+    <!-- 1 Chat -->
+    <rect x="40" y="140" width="200" height="110" rx="10" fill="#173b6c"/>
+    <text x="140" y="183" font-size="17" font-weight="700" fill="#ffffff">AI chat assistant</text>
+    <text x="140" y="207" font-size="12" fill="#dce6f2">attach a file,</text>
+    <text x="140" y="223" font-size="12" fill="#dce6f2">pick a language</text>
+
+    <!-- 2 Extract -->
+    <rect x="300" y="140" width="200" height="110" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="400" y="180" font-weight="700" fill="#173b6c">1. Extract</text>
+    <text x="400" y="203" font-size="12" fill="#5c6f86">text segments to JSON,</text>
+    <text x="400" y="219" font-size="12" fill="#5c6f86">bold, links, colours</text>
+    <text x="400" y="235" font-size="12" fill="#5c6f86">kept as inline tags</text>
+
+    <!-- 3 Translate -->
+    <rect x="550" y="140" width="200" height="110" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="650" y="180" font-weight="700" fill="#173b6c">2. Translate</text>
+    <text x="650" y="203" font-size="12" fill="#5c6f86">LLM on Azure AI Foundry,</text>
+    <text x="650" y="219" font-size="12" fill="#5c6f86">technical glossary,</text>
+    <text x="650" y="235" font-size="12" fill="#5c6f86">parallel batches</text>
+
+    <!-- 4 Fit -->
+    <rect x="550" y="350" width="200" height="110" rx="10" fill="#149ddd"/>
+    <text x="650" y="390" font-weight="700" fill="#ffffff">3. Fit</text>
+    <text x="650" y="413" font-size="12" fill="#e8f5fc">shrink the font (≥ 80%)</text>
+    <text x="650" y="429" font-size="12" fill="#e8f5fc">or reword shorter,</text>
+    <text x="650" y="445" font-size="12" fill="#e8f5fc">so nothing overflows</text>
+
+    <!-- 5 Write back -->
+    <rect x="300" y="350" width="200" height="110" rx="10" fill="#f5f8fd" stroke="#149ddd" stroke-width="2"/>
+    <text x="400" y="390" font-weight="700" fill="#173b6c">4. Write back</text>
+    <text x="400" y="413" font-size="12" fill="#5c6f86">into the original file,</text>
+    <text x="400" y="429" font-size="12" fill="#5c6f86">everything else</text>
+    <text x="400" y="445" font-size="12" fill="#5c6f86">left untouched</text>
+
+    <!-- 6 Download -->
+    <rect x="40" y="350" width="200" height="110" rx="10" fill="#173b6c"/>
+    <text x="140" y="393" font-size="17" font-weight="700" fill="#ffffff">Download</text>
+    <text x="140" y="417" font-size="12" fill="#dce6f2">same layout,</text>
+    <text x="140" y="433" font-size="12" fill="#dce6f2">new language</text>
+  </g>
+
+  <g stroke="#149ddd" stroke-width="2" fill="none">
+    <line x1="240" y1="195" x2="296" y2="195" marker-end="url(#arrow)"/>
+    <line x1="500" y1="195" x2="546" y2="195" marker-end="url(#arrow)"/>
+    <line x1="650" y1="250" x2="650" y2="346" marker-end="url(#arrow)"/>
+    <line x1="550" y1="405" x2="504" y2="405" marker-end="url(#arrow)"/>
+    <line x1="300" y1="405" x2="244" y2="405" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Format chips -->
+  <g font-size="13" font-weight="700" text-anchor="middle">
+    <rect x="196" y="525" width="86" height="34" rx="17" fill="#e8f1fb"/>
+    <text x="239" y="547" fill="#2b579a">WORD</text>
+    <rect x="296" y="525" width="120" height="34" rx="17" fill="#fbece6"/>
+    <text x="356" y="547" fill="#b7472a">POWERPOINT</text>
+    <rect x="430" y="525" width="86" height="34" rx="17" fill="#e7f4ec"/>
+    <text x="473" y="547" fill="#217346">EXCEL</text>
+    <rect x="530" y="525" width="74" height="34" rx="17" fill="#fbe9e9"/>
+    <text x="567" y="547" fill="#c62828">PDF</text>
+  </g>
+</svg>

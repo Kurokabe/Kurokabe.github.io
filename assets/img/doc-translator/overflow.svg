@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="Helvetica, Arial, sans-serif">
+  <rect width="800" height="600" fill="#ffffff"/>
+
+  <text x="400" y="58" text-anchor="middle" font-size="24" font-weight="700" fill="#173b6c">Translations grow. Layouts don't.</text>
+  <text x="400" y="88" text-anchor="middle" font-size="14" fill="#5c6f86">The same slide, English to German</text>
+
+  <!-- ===== Column 1: original ===== -->
+  <g transform="translate(25,140)">
+    <rect x="0" y="0" width="230" height="173" rx="6" fill="#f5f8fd" stroke="#c9d6e3" stroke-width="1.5"/>
+    <rect x="0" y="0" width="230" height="26" rx="6" fill="#173b6c"/>
+    <rect x="0" y="16" width="230" height="10" fill="#173b6c"/>
+    <text x="12" y="18" font-size="11" font-weight="700" fill="#ffffff">Outlook 2030</text>
+    <rect x="12" y="40" width="128" height="52" fill="none" stroke="#149ddd" stroke-width="1.2" stroke-dasharray="4 3"/>
+    <text x="18" y="60" font-size="14" fill="#173b6c">Grid capacity</text>
+    <text x="18" y="80" font-size="14" fill="#173b6c">doubles by 2030</text>
+    <rect x="152" y="40" width="66" height="96" rx="3" fill="#dbe7f3"/>
+    <path d="M158 126 L178 96 L192 112 L202 100 L214 126 Z" fill="#9fb9d4"/>
+    <circle cx="200" cy="66" r="7" fill="#f2c14e"/>
+    <rect x="12" y="106" width="128" height="30" rx="3" fill="#e9eef5"/>
+    <text x="20" y="125" font-size="10" fill="#5c6f86">Source: annual report</text>
+    <text x="12" y="160" font-size="9" fill="#9fb3c8">Strategy update · page 4</text>
+  </g>
+  <text x="140" y="350" text-anchor="middle" font-size="15" font-weight="700" fill="#173b6c">Original</text>
+  <text x="140" y="372" text-anchor="middle" font-size="12" fill="#5c6f86">text fits its box</text>
+
+  <!-- ===== Column 2: naive ===== -->
+  <g transform="translate(285,140)">
+    <rect x="0" y="0" width="230" height="173" rx="6" fill="#f5f8fd" stroke="#c9d6e3" stroke-width="1.5"/>
+    <rect x="0" y="0" width="230" height="26" rx="6" fill="#173b6c"/>
+    <rect x="0" y="16" width="230" height="10" fill="#173b6c"/>
+    <text x="12" y="18" font-size="11" font-weight="700" fill="#ffffff">Ausblick 2030</text>
+    <rect x="152" y="40" width="66" height="96" rx="3" fill="#dbe7f3"/>
+    <path d="M158 126 L178 96 L192 112 L202 100 L214 126 Z" fill="#9fb9d4"/>
+    <circle cx="200" cy="66" r="7" fill="#f2c14e"/>
+    <rect x="12" y="106" width="128" height="30" rx="3" fill="#e9eef5"/>
+    <text x="20" y="125" font-size="10" fill="#5c6f86">Quelle: Geschäftsbericht</text>
+    <rect x="12" y="40" width="128" height="52" fill="none" stroke="#d64545" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="18" y="60" font-size="14" fill="#173b6c">Die Netzkapazität</text>
+    <text x="18" y="80" font-size="14" fill="#173b6c">verdoppelt sich</text>
+    <text x="18" y="100" font-size="14" fill="#d64545">bis zum Jahr 2030</text>
+    <text x="12" y="160" font-size="9" fill="#9fb3c8">Strategie-Update · Seite 4</text>
+  </g>
+  <text x="400" y="350" text-anchor="middle" font-size="15" font-weight="700" fill="#d64545">Naive translation</text>
+  <text x="400" y="372" text-anchor="middle" font-size="12" fill="#5c6f86">text overflows onto the next element</text>
+
+  <!-- ===== Column 3: fitted ===== -->
+  <g transform="translate(545,140)">
+    <rect x="0" y="0" width="230" height="173" rx="6" fill="#f5f8fd" stroke="#c9d6e3" stroke-width="1.5"/>
+    <rect x="0" y="0" width="230" height="26" rx="6" fill="#173b6c"/>
+    <rect x="0" y="16" width="230" height="10" fill="#173b6c"/>
+    <text x="12" y="18" font-size="11" font-weight="700" fill="#ffffff">Ausblick 2030</text>
+    <rect x="12" y="40" width="128" height="52" fill="none" stroke="#2e9e5b" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="18" y="57" font-size="11.5" fill="#173b6c">Die Netzkapazität</text>
+    <text x="18" y="72" font-size="11.5" fill="#173b6c">verdoppelt sich</text>
+    <text x="18" y="87" font-size="11.5" fill="#173b6c">bis 2030</text>
+    <rect x="152" y="40" width="66" height="96" rx="3" fill="#dbe7f3"/>
+    <path d="M158 126 L178 96 L192 112 L202 100 L214 126 Z" fill="#9fb9d4"/>
+    <circle cx="200" cy="66" r="7" fill="#f2c14e"/>
+    <rect x="12" y="106" width="128" height="30" rx="3" fill="#e9eef5"/>
+    <text x="20" y="125" font-size="10" fill="#5c6f86">Quelle: Geschäftsbericht</text>
+    <text x="12" y="160" font-size="9" fill="#9fb3c8">Strategie-Update · Seite 4</text>
+  </g>
+  <text x="660" y="350" text-anchor="middle" font-size="15" font-weight="700" fill="#2e9e5b">Fitted</text>
+  <text x="660" y="372" text-anchor="middle" font-size="12" fill="#5c6f86">font scaled to 82%, wording tightened</text>
+
+  <!-- Rules -->
+  <g font-size="14" fill="#173b6c">
+    <rect x="100" y="430" width="600" height="120" rx="10" fill="#f5f8fd"/>
+    <text x="400" y="462" text-anchor="middle" font-weight="700">How the translator fits text that no longer fits</text>
+    <text x="400" y="490" text-anchor="middle" font-size="13" fill="#5c6f86">1. Ask the model to stay within a length budget</text>
+    <text x="400" y="511" text-anchor="middle" font-size="13" fill="#5c6f86">2. Shrink the font, but never below 80% of the original</text>
+    <text x="400" y="532" text-anchor="middle" font-size="13" fill="#5c6f86">3. Still too long? Send it back once for a shorter rewording</text>
+  </g>
+</svg>
